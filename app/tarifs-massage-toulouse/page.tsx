@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import BookingForm from "@/components/BookingForm";
 import JsonLd from "@/components/JsonLd";
 import PageHero from "@/components/PageHero";
 import RdvBand from "@/components/RdvBand";
@@ -133,12 +134,12 @@ export default function Tarifs() {
                 <PriceLine label="Formule · 1 heure" price="60 €" size={23} />
                 <PriceLine label="Formule · 1 h 30" price="85 €" size={23} />
               </div>
-              <Link
-                href="/contact"
+              <a
+                href="#reserver"
                 className="inline-flex items-center mt-[30px] bg-forest text-linen font-semibold text-[13px] tracking-[.06em] uppercase px-8 py-4 rounded-[2px] transition-[background-color,transform] duration-[400ms] hover:bg-forestlight hover:-translate-y-[2px] hover:text-linen"
               >
                 Prendre rendez‑vous
-              </Link>
+              </a>
             </div>
             <div
               className="flex-[1_1_360px] min-w-[300px] relative overflow-hidden rounded-[4px] aspect-[4/5]"
@@ -200,12 +201,12 @@ export default function Tarifs() {
                 <PriceLine label="Duo · 1 heure" price="120 €" size={23} strong />
                 <PriceLine label="Duo · 1 h 30" price="170 €" size={23} strong />
               </div>
-              <Link
-                href="/contact"
+              <a
+                href="#reserver"
                 className="inline-flex items-center mt-[30px] bg-transparent text-forest border border-[rgba(44,64,52,.4)] font-semibold text-[13px] tracking-[.06em] uppercase px-8 py-4 rounded-[2px] transition-[background-color,color] duration-[350ms] hover:bg-forest hover:text-linen"
               >
                 Réserver un duo
-              </Link>
+              </a>
             </div>
           </div>
         </section>
@@ -273,6 +274,12 @@ export default function Tarifs() {
             </div>
           </div>
         </section>
+
+        <BookingForm
+          variant="massage"
+          heading="Réservez au tarif affiché"
+          sub="Choisissez le massage, la durée et la formule — je vous rappelle sous 24 h ouvrées pour caler le créneau. Aucun supplément : déplacement et installation compris."
+        />
 
         <RdvBand />
       </main>

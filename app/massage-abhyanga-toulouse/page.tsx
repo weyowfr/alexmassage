@@ -351,7 +351,7 @@ export default function MassageAbhyanga() {
           </div>
         </section>
 
-        <SeanceAccordion />
+        <SeanceAccordion variant="abhy" />
 
         <PrepareSection />
 

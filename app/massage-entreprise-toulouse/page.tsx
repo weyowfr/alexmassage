@@ -6,10 +6,48 @@ import PageHero from "@/components/PageHero";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import BenefitCard from "@/components/massage/BenefitCard";
+import Credentials from "@/components/massage/Credentials";
 import { businessRef } from "@/lib/structured-data";
 
+const FAQ = [
+  {
+    q: "Combien de collaborateurs peuvent être massés dans une journée ?",
+    a: "Comptez 3 à 4 personnes par heure (séances de 15 à 20 minutes chacune). Une demi-journée permet de masser 9 à 12 collaborateurs, une journée complète 18 à 24. Pour des effectifs plus importants, j'interviens sur plusieurs jours ou avec un second praticien.",
+  },
+  {
+    q: "Que devons-nous prévoir côté logistique ?",
+    a: "Presque rien : une salle au calme d'environ 2 m × 2 m (salle de réunion, bureau libre) suffit. J'apporte la chaise ergonomique, la musique et tout le nécessaire. Le massage amma assis se pratique habillé, sans huile — les collaborateurs retournent travailler immédiatement.",
+  },
+  {
+    q: "Comment se passe le planning des séances ?",
+    a: "Je vous fournis un créneau type et vos équipes s'inscrivent sur un planning (le vôtre ou un simple tableau partagé). Les séances s'enchaînent sans temps mort et sans désorganiser le service — c'est le format le plus apprécié des équipes RH.",
+  },
+  {
+    q: "La prestation peut-elle être financée par le CSE ?",
+    a: "Oui : la prestation entre dans le budget œuvres sociales du CSE au titre du bien-être au travail (QVCT). Une facture détaillée est fournie, et le format récurrent (mensuel ou trimestriel) est possible.",
+  },
+  {
+    q: "Êtes-vous assuré pour intervenir en entreprise ?",
+    a: "Oui, je suis couvert par une assurance responsabilité civile professionnelle, et formé à l'Institut Temana de Toulouse. L'attestation RC pro peut être jointe au devis sur simple demande.",
+  },
+  {
+    q: "Dans quelle zone intervenez-vous ?",
+    a: "À Toulouse et dans un rayon de 30 km : Blagnac, Colomiers, Labège, Balma… Pour un site plus éloigné en Occitanie, contactez-moi — c'est souvent possible sur une journée complète.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
+
 export const metadata: Metadata = {
-  title: "Massage en entreprise à Toulouse — amma assis | Alex Massage",
+  title: "Massage entreprise Toulouse — amma assis | Alex Massage",
   description:
     "Massage amma assis en entreprise à Toulouse : QVCT, RSE, bien-être au travail. Offrez à vos équipes détente et motivation. Devis rapide — contactez-moi.",
   alternates: {
@@ -74,6 +112,7 @@ export default function MassageEntreprise() {
     <>
       <JsonLd data={serviceLd} />
       <JsonLd data={breadcrumbLd} />
+      <JsonLd data={faqLd} />
       <SiteHeader current="entreprise" />
 
       <main>
@@ -84,6 +123,8 @@ export default function MassageEntreprise() {
           image="/images/massage-entreprise.jpeg"
           imageAlt="Massage amma assis sur chaise ergonomique en entreprise"
         />
+
+        <Credentials />
 
         {/* Intro */}
         <section
@@ -294,6 +335,52 @@ export default function MassageEntreprise() {
                   côté, une salle au calme suffit.
                 </p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ entreprise */}
+        <section
+          aria-labelledby="h-ent-faq"
+          className="bg-linen py-[clamp(56px,8vw,104px)] px-[clamp(20px,5vw,64px)]"
+        >
+          <div className="max-w-[840px] mx-auto">
+            <p
+              data-reveal
+              className="text-[13px] tracking-[.24em] uppercase font-semibold text-bronze m-0 mb-4"
+            >
+              Vos questions
+            </p>
+            <h2
+              id="h-ent-faq"
+              data-reveal="80"
+              className="font-serif font-normal text-[clamp(26px,3.6vw,42px)] leading-[1.1] text-ink m-0 max-w-[20ch]"
+            >
+              Le massage en entreprise, en pratique
+            </h2>
+            <div data-reveal="160" className="mt-8 border-t border-[rgba(34,28,21,.14)]">
+              {FAQ.map((f) => (
+                <details
+                  key={f.q}
+                  name="faq-entreprise"
+                  className="group border-b border-[rgba(34,28,21,.14)]"
+                >
+                  <summary className="flex items-center gap-4 py-5 px-1 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                    <span className="flex-1 font-serif text-[19px] text-cocoa transition-colors duration-[400ms] group-open:text-ink">
+                      {f.q}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="font-sans text-[22px] font-light leading-none text-bronze transition-transform duration-[400ms] group-open:rotate-45 group-open:text-gold"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <p className="m-0 px-1 pb-6 text-taupe text-[15.5px] leading-[1.75] max-w-[66ch]">
+                    {f.a}
+                  </p>
+                </details>
+              ))}
             </div>
           </div>
         </section>

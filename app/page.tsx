@@ -375,8 +375,8 @@ export default function Home() {
                   Offrez un moment de bien‑être
                 </h3>
                 <p className="m-0 mb-[18px] text-[rgba(244,239,231,.82)] text-[15.5px] leading-[1.7] max-w-[44ch]">
-                  Montants flexibles dès 30 €, valables 1 an, livraison
-                  numérique instantanée. Le cadeau qui fait vraiment plaisir.
+                  Montants flexibles dès 30 €, valables 1 an, envoi par email
+                  sous 24 h. Le cadeau qui fait vraiment plaisir.
                 </p>
                 <Link
                   href="/carte-cadeau-massage-toulouse"

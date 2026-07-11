@@ -339,7 +339,7 @@ export default function BookingForm({
                       className={inputClass}
                     >
                       <option value="Numérique (par email)">
-                        Numérique — par email, instantané
+                        Numérique — par email sous 24 h
                       </option>
                       <option value="Carte papier">Carte papier</option>
                     </select>

@@ -345,7 +345,7 @@ export default function MassageSportif() {
           </div>
         </section>
 
-        <SeanceAccordion />
+        <SeanceAccordion variant="sportif" />
 
         <PrepareSection />
 

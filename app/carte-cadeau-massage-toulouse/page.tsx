@@ -9,7 +9,7 @@ import SiteHeader from "@/components/SiteHeader";
 export const metadata: Metadata = {
   title: "Carte cadeau massage Toulouse — dès 30 € | Alex Massage",
   description:
-    "Offrez une carte cadeau massage à domicile à Toulouse : montants flexibles dès 30 €, valable 1 an, livraison instantanée. Noël, anniversaire, Saint-Valentin.",
+    "Offrez une carte cadeau massage à domicile à Toulouse : montants flexibles dès 30 €, valable 1 an, envoi par email sous 24 h. Noël, anniversaire, Saint-Valentin.",
   alternates: {
     canonical: "https://www.alexmassage.fr/carte-cadeau-massage-toulouse",
   },
@@ -37,7 +37,8 @@ const productLd = {
   "@type": "Product",
   name: "Carte cadeau massage à domicile à Toulouse",
   description:
-    "Carte cadeau pour un massage bien-être à domicile à Toulouse : montants flexibles, valable 1 an, livraison numérique instantanée.",
+    "Carte cadeau pour un massage bien-être à domicile à Toulouse : montants flexibles, valable 1 an, envoyée par email sous 24 h ouvrées.",
+  image: "https://www.alexmassage.fr/images/espace-detente.jpeg",
   brand: { "@type": "Brand", name: "Alex Massage" },
   offers: {
     "@type": "AggregateOffer",
@@ -45,6 +46,8 @@ const productLd = {
     highPrice: "170",
     priceCurrency: "EUR",
     offerCount: "6",
+    availability: "https://schema.org/InStock",
+    url: "https://www.alexmassage.fr/carte-cadeau-massage-toulouse",
   },
 };
 
@@ -73,7 +76,7 @@ const faqLd = {
       name: "Comment est livrée la carte cadeau ?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Vous choisissez la livraison numérique instantanée par email, ou une carte papier remise en main propre.",
+        text: "Vous choisissez la livraison numérique par email — envoyée sous 24 h ouvrées après validation de votre commande — ou une carte papier remise en main propre.",
       },
     },
     {
@@ -146,9 +149,10 @@ const FAQ_ITEMS = [
       <>
         Vous choisissez la{" "}
         <strong className="text-cocoa font-semibold">
-          livraison numérique instantanée
+          livraison numérique par email
         </strong>{" "}
-        par email, ou une carte papier remise en main propre.
+        — envoyée sous 24 h ouvrées après validation — ou une carte papier
+        remise en main propre.
       </>
     ),
   },
@@ -357,10 +361,10 @@ export default function CarteCadeau() {
                   ✉
                 </div>
                 <h3 className="font-serif font-normal text-[21px] text-ink m-0 mb-2">
-                  Livraison instantanée
+                  Livraison rapide
                 </h3>
                 <p className="m-0 text-taupe text-[15px] leading-[1.65]">
-                  Reçue par email en quelques minutes, ou en carte papier.
+                  Par email sous 24 h ouvrées, ou en carte papier.
                 </p>
               </div>
               <div data-reveal="240" className="text-center">

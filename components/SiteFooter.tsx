@@ -47,6 +47,14 @@ export default function SiteFooter() {
           <p className="mt-3 mb-0 text-[14.5px] text-[#4A4235]">
             Lun – Ven · 9 h – 19 h
           </p>
+          <a
+            href="https://maps.app.goo.gl/kkjPhqm5aJjqnFJ3A"
+            target="_blank"
+            rel="noopener"
+            className="block mt-2 py-[5px] text-[14.5px] font-semibold text-forest hover:text-bronze"
+          >
+            Voir mes avis Google →
+          </a>
         </div>
 
         <div className="flex-[1_1_170px] min-w-[150px]">

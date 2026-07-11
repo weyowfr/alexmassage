@@ -7,6 +7,7 @@ import PageHero from "@/components/PageHero";
 import RdvBand from "@/components/RdvBand";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import Credentials from "@/components/massage/Credentials";
 
 export const metadata: Metadata = {
   title: "Mes massages à domicile à Toulouse | Alex Massage",
@@ -104,6 +105,47 @@ const PROTOCOLS = [
   },
 ];
 
+/* Tableau comparatif : la vraie valeur ajoutée d'une page hub par rapport
+   aux trois pages protocole qu'elle relie. */
+const COMPARE_ROWS: { label: string; cali: string; abhy: string; sued: string }[] = [
+  { label: "Intention", cali: "Se détendre, lâcher prise", abhy: "Se rééquilibrer, retrouver de l'énergie", sued: "Dénouer, récupérer" },
+  { label: "Pression", cali: "Douce à modérée", abhy: "Modérée, rythmée", sued: "Profonde, ajustée" },
+  { label: "Rythme", cali: "Lent, enveloppant", abhy: "Continu, tonique", sued: "Soutenu, ciblé" },
+  { label: "Huile", cali: "Douce, glisse longue", abhy: "Chaude, choisie selon le dosha", sued: "Parcimonieuse, travail profond" },
+  { label: "Idéal si…", cali: "Stress, fatigue mentale, sommeil difficile", abhy: "Baisse de vitalité, besoin d'harmonie", sued: "Sport, tensions et nœuds musculaires" },
+  { label: "Durées", cali: "30 min à 1 h 30", abhy: "45 min à 1 h 30", sued: "45 min à 1 h 30" },
+  { label: "À partir de", cali: "30 €", abhy: "50 €", sued: "50 €" },
+];
+
+const FAQ = [
+  {
+    q: "Quel massage choisir pour une première fois ?",
+    a: "Le californien est le plus accessible : pression douce, mouvements enveloppants, aucune sensibilité particulière après la séance. C'est le massage que je recommande si vous ne savez pas par où commencer — la formule découverte de 30 minutes à 30 € permet d'essayer sans engagement.",
+  },
+  {
+    q: "Quelle est la différence entre le californien et l'abhyanga ?",
+    a: "Le californien vise la détente nerveuse par des gestes lents et une pression douce ; l'abhyanga, issu de l'Ayurvéda, travaille la circulation de l'énergie avec une huile chaude et un rythme plus soutenu. Détente pure d'un côté, revitalisation de l'autre.",
+  },
+  {
+    q: "Le massage sportif est-il réservé aux sportifs ?",
+    a: "Non : il s'adresse aussi à toute personne qui accumule des tensions profondes — nuque, trapèzes, lombaires — à cause du travail de bureau ou du stress. La pression est simplement plus appuyée que sur un massage relaxant, et toujours ajustée à votre ressenti.",
+  },
+  {
+    q: "Peut-on choisir des massages différents en duo ?",
+    a: "Oui. En massage duo, chaque personne choisit son protocole et sa pression : un californien pour l'une, un sportif pour l'autre, sur la même durée et dans la même pièce. Tous les détails sont sur la page massage duo.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
+
 const REASSURANCE = [
   {
     icon: "⌖",
@@ -136,6 +178,7 @@ export default function MesMassages() {
     <>
       <JsonLd data={breadcrumbLd} />
       <JsonLd data={itemListLd} />
+      <JsonLd data={faqLd} />
       <SiteHeader current="massages" />
 
       <main>
@@ -146,6 +189,8 @@ export default function MesMassages() {
           image="/images/table-massage-serviettes.jpeg"
           imageAlt="Table de massage dressée avec serviettes et huiles"
         />
+
+        <Credentials />
 
         {/* Intro pilier */}
         <section
@@ -229,6 +274,75 @@ export default function MesMassages() {
           </div>
         </section>
 
+        {/* Comparateur */}
+        <section
+          aria-labelledby="h-pilier-compare"
+          className="bg-linen px-[clamp(20px,5vw,64px)] pb-[clamp(56px,8vw,104px)]"
+        >
+          <div className="max-w-[1160px] mx-auto">
+            <p
+              data-reveal
+              className="text-[13px] tracking-[.24em] uppercase font-semibold text-bronze m-0 mb-4"
+            >
+              Comparer
+            </p>
+            <h2
+              id="h-pilier-compare"
+              data-reveal="80"
+              className="font-serif font-normal text-[clamp(26px,3.6vw,42px)] leading-[1.1] text-ink m-0 max-w-[20ch]"
+            >
+              Les trois massages en un coup d&apos;œil
+            </h2>
+            <div data-reveal="160" className="mt-8 overflow-x-auto">
+              <table className="w-full min-w-[680px] border-collapse text-left">
+                <thead>
+                  <tr className="border-b-2 border-[rgba(192,135,60,.5)]">
+                    <th className="py-4 pr-4 text-[12px] tracking-[.14em] uppercase text-mute font-semibold w-[16%]" />
+                    <th className="py-4 px-4 font-serif font-normal text-[19px] text-ink">
+                      <Link href="/massage-californien-toulouse" className="hover:text-bronze">
+                        Californien
+                      </Link>
+                    </th>
+                    <th className="py-4 px-4 font-serif font-normal text-[19px] text-ink">
+                      <Link href="/massage-abhyanga-toulouse" className="hover:text-bronze">
+                        Abhyanga
+                      </Link>
+                    </th>
+                    <th className="py-4 pl-4 font-serif font-normal text-[19px] text-ink">
+                      <Link href="/massage-sportif-toulouse" className="hover:text-bronze">
+                        Sportif
+                      </Link>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARE_ROWS.map((r) => (
+                    <tr key={r.label} className="border-b border-[rgba(34,28,21,.1)]">
+                      <th className="py-4 pr-4 text-[12px] tracking-[.12em] uppercase text-bronze font-semibold align-top">
+                        {r.label}
+                      </th>
+                      <td className="py-4 px-4 text-taupe text-[15px] leading-[1.6] align-top">{r.cali}</td>
+                      <td className="py-4 px-4 text-taupe text-[15px] leading-[1.6] align-top">{r.abhy}</td>
+                      <td className="py-4 pl-4 text-taupe text-[15px] leading-[1.6] align-top">{r.sued}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p data-reveal="220" className="mt-6 mb-0 text-taupe text-[15.5px]">
+              Envie de partager la séance ? Les trois protocoles existent aussi
+              en{" "}
+              <Link
+                href="/massage-duo-toulouse"
+                className="text-forest font-semibold border-b border-[rgba(192,135,60,.5)] hover:text-bronze"
+              >
+                massage duo à domicile
+              </Link>{" "}
+              — deux tables, deux praticiens, chez vous.
+            </p>
+          </div>
+        </section>
+
         {/* Réassurance */}
         <section
           aria-labelledby="h-pilier-reassurance"
@@ -288,6 +402,52 @@ export default function MesMassages() {
               </Link>
               .
             </p>
+          </div>
+        </section>
+
+        {/* FAQ choix du massage */}
+        <section
+          aria-labelledby="h-pilier-faq"
+          className="bg-linen py-[clamp(56px,8vw,104px)] px-[clamp(20px,5vw,64px)]"
+        >
+          <div className="max-w-[840px] mx-auto">
+            <p
+              data-reveal
+              className="text-[13px] tracking-[.24em] uppercase font-semibold text-bronze m-0 mb-4"
+            >
+              Bien choisir
+            </p>
+            <h2
+              id="h-pilier-faq"
+              data-reveal="80"
+              className="font-serif font-normal text-[clamp(26px,3.6vw,42px)] leading-[1.1] text-ink m-0 max-w-[18ch]"
+            >
+              Quel massage choisir ?
+            </h2>
+            <div data-reveal="160" className="mt-8 border-t border-[rgba(34,28,21,.14)]">
+              {FAQ.map((f) => (
+                <details
+                  key={f.q}
+                  name="faq-massages"
+                  className="group border-b border-[rgba(34,28,21,.14)]"
+                >
+                  <summary className="flex items-center gap-4 py-5 px-1 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                    <span className="flex-1 font-serif text-[19px] text-cocoa transition-colors duration-[400ms] group-open:text-ink">
+                      {f.q}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="font-sans text-[22px] font-light leading-none text-bronze transition-transform duration-[400ms] group-open:rotate-45 group-open:text-gold"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <p className="m-0 px-1 pb-6 text-taupe text-[15.5px] leading-[1.75] max-w-[66ch]">
+                    {f.a}
+                  </p>
+                </details>
+              ))}
+            </div>
           </div>
         </section>
 

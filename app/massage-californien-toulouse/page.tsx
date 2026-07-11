@@ -313,7 +313,7 @@ export default function MassageCalifornien() {
           <TimeGuarantee />
         </section>
 
-        <SeanceAccordion />
+        <SeanceAccordion variant="cali" />
 
         <PrepareSection />
 

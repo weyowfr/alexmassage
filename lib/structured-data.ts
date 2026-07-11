@@ -15,25 +15,30 @@ export const businessLd = {
   email: "contact@alexmassage.fr",
   priceRange: "€€",
   image: `${SITE_URL}/og-image.jpg`,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Toulouse",
-    addressRegion: "Occitanie",
-    postalCode: "31000",
-    addressCountry: "FR",
-  },
-  geo: { "@type": "GeoCoordinates", latitude: 43.6045, longitude: 1.4442 },
+  /* Service Area Business : pas d'adresse publique (prestation à domicile,
+     fiche Google en mode « zone desservie ») — la zone remplace l'adresse. */
+  geo: { "@type": "GeoCoordinates", latitude: 43.60446, longitude: 1.44421 },
   /* Profils externes vérifiés — fiche Google Business Profile ;
      ajouter ensuite PagesJaunes / Facebook / Instagram quand ils existent. */
   sameAs: ["https://maps.app.goo.gl/kkjPhqm5aJjqnFJ3A"],
   areaServed: [
     { "@type": "City", name: "Toulouse" },
+    { "@type": "City", name: "Muret" },
+    { "@type": "City", name: "Colomiers" },
+    { "@type": "City", name: "Blagnac" },
+    { "@type": "City", name: "Tournefeuille" },
+    { "@type": "City", name: "Balma" },
+    { "@type": "City", name: "Labège" },
+    { "@type": "City", name: "Ramonville-Saint-Agne" },
+    { "@type": "City", name: "Castanet-Tolosan" },
+    { "@type": "City", name: "Saint-Orens-de-Gameville" },
+    { "@type": "City", name: "Plaisance-du-Touch" },
     {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: 43.6045,
-        longitude: 1.4442,
+        latitude: 43.60446,
+        longitude: 1.44421,
       },
       geoRadius: "30000",
     },
@@ -54,7 +59,7 @@ export const businessLd = {
         name: "Massage relaxant / californien à domicile à Toulouse",
       },
       priceSpecification: {
-        "@type": "PriceSpecification",
+        "@type": "UnitPriceSpecification",
         minPrice: 30,
         priceCurrency: "EUR",
       },
@@ -66,7 +71,7 @@ export const businessLd = {
         name: "Massage énergétique / abhyanga à domicile à Toulouse",
       },
       priceSpecification: {
-        "@type": "PriceSpecification",
+        "@type": "UnitPriceSpecification",
         minPrice: 50,
         priceCurrency: "EUR",
       },
@@ -78,7 +83,7 @@ export const businessLd = {
         name: "Massage suédois / sportif à domicile à Toulouse",
       },
       priceSpecification: {
-        "@type": "PriceSpecification",
+        "@type": "UnitPriceSpecification",
         minPrice: 50,
         priceCurrency: "EUR",
       },
