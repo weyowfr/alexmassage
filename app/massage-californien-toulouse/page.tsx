@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import BookingForm from "@/components/BookingForm";
 import JsonLd from "@/components/JsonLd";
 import PageHero from "@/components/PageHero";
@@ -8,14 +7,17 @@ import SeanceAccordion from "@/components/SeanceAccordion";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import BenefitCard from "@/components/massage/BenefitCard";
+import Credentials from "@/components/massage/Credentials";
+import PrepareSection from "@/components/massage/PrepareSection";
 import Gallery from "@/components/massage/Gallery";
 import IdealAside from "@/components/massage/IdealAside";
 import OtherMassages from "@/components/massage/OtherMassages";
 import PriceLine from "@/components/massage/PriceLine";
 import TimeGuarantee from "@/components/massage/TimeGuarantee";
+import { businessRef } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Massage californien à domicile Toulouse — dès 30 € | Alex Massage",
+  title: "Massage californien à domicile Toulouse | Alex Massage",
   description:
     "Massage relaxant / californien à domicile à Toulouse : mouvements lents et enveloppants pour un lâcher-prise total. Solo dès 30 €, duo dès 100 €. Réservez.",
   alternates: {
@@ -27,6 +29,7 @@ export const metadata: Metadata = {
     title: "Massage californien à domicile à Toulouse — Alex Massage",
     description:
       "Le massage relaxant qui apaise le corps et l'esprit, chez vous à Toulouse. Dès 30 €.",
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -36,12 +39,7 @@ const serviceLd = {
   serviceType: "Massage relaxant / californien à domicile",
   name: "Massage relaxant / californien à domicile à Toulouse",
   areaServed: { "@type": "City", name: "Toulouse" },
-  provider: {
-    "@type": "HealthAndBeautyBusiness",
-    name: "Alex Massage",
-    telephone: "+33771838010",
-    areaServed: "Toulouse",
-  },
+  provider: businessRef,
   description:
     "Massage californien à domicile à Toulouse : mouvements lents et enveloppants pour une relaxation profonde, en solo ou en duo.",
   offers: [
@@ -136,6 +134,8 @@ export default function MassageCalifornien() {
           image="/images/table-massage-serviettes.jpeg"
           imageAlt="Serviettes roulées sur la table de massage, ambiance chaleureuse"
         />
+
+        <Credentials />
 
         {/* Intro + panneau idéal pour */}
         <section
@@ -314,6 +314,8 @@ export default function MassageCalifornien() {
         </section>
 
         <SeanceAccordion />
+
+        <PrepareSection />
 
         <OtherMassages exclude="cali" headingId="h-cali-autres" />
 

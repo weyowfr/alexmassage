@@ -7,9 +7,39 @@ import RdvBand from "@/components/RdvBand";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import PriceLine from "@/components/massage/PriceLine";
+import { businessRef } from "@/lib/structured-data";
+
+const FAQ = [
+  {
+    q: "Le déplacement est-il compris dans le prix ?",
+    a: "Oui : dans un rayon de 30 km autour de Toulouse, le déplacement et l'installation (table, draps, huiles, musique) sont inclus dans le tarif affiché. Au-delà, appelez-moi — on trouvera une solution.",
+  },
+  {
+    q: "Le temps affiché correspond-il vraiment au temps massé ?",
+    a: "Oui. Le temps annoncé et payé est réellement celui pratiqué : l'installation et le rangement sont en plus. Une heure réservée, c'est une heure de massage.",
+  },
+  {
+    q: "Quand et comment se passe le paiement ?",
+    a: "Le paiement s'effectue le jour de la séance, une fois le massage terminé. Les modalités sont convenues ensemble lors de la réservation.",
+  },
+  {
+    q: "Puis-je régler avec une carte cadeau ?",
+    a: "Bien sûr : les cartes cadeaux Alex Massage, valables 1 an, s'utilisent sur toutes les formules, en solo comme en duo.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.map(({ q, a }) => ({
+    "@type": "Question",
+    name: q,
+    acceptedAnswer: { "@type": "Answer", text: a },
+  })),
+};
 
 export const metadata: Metadata = {
-  title: "Tarifs massage à domicile Toulouse — solo & duo | Alex Massage",
+  title: "Tarifs massage à domicile Toulouse | Alex Massage",
   description:
     "Tarifs des massages à domicile à Toulouse : solo dès 30 € (découverte 30 min), duo dès 100 €. Californien, ayurvédique ou sportif. Réservez votre séance.",
   alternates: {
@@ -21,6 +51,7 @@ export const metadata: Metadata = {
     title: "Tarifs massage à domicile à Toulouse — Alex Massage",
     description:
       "Formules solo et duo, dès 30 €. Massage à domicile à Toulouse et 30 km alentour.",
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -33,11 +64,16 @@ const breadcrumbLd = {
   ],
 };
 
-const offerCatalogLd = {
+/* Service + offers (itemListElement n'est pas une propriété valide sur
+   OfferCatalog pour des Offer directes). */
+const pricingLd = {
   "@context": "https://schema.org",
-  "@type": "OfferCatalog",
-  name: "Tarifs massage à domicile à Toulouse",
-  itemListElement: [
+  "@type": "Service",
+  serviceType: "Massage bien-être à domicile",
+  name: "Massage à domicile à Toulouse — formules solo et duo",
+  areaServed: { "@type": "City", name: "Toulouse" },
+  provider: businessRef,
+  offers: [
     { "@type": "Offer", name: "Solo — Découverte 30 min (californien)", price: "30", priceCurrency: "EUR" },
     { "@type": "Offer", name: "Solo — 45 min", price: "50", priceCurrency: "EUR" },
     { "@type": "Offer", name: "Solo — 1 h", price: "60", priceCurrency: "EUR" },
@@ -52,7 +88,8 @@ export default function Tarifs() {
   return (
     <>
       <JsonLd data={breadcrumbLd} />
-      <JsonLd data={offerCatalogLd} />
+      <JsonLd data={pricingLd} />
+      <JsonLd data={faqLd} />
       <SiteHeader current="tarifs" />
 
       <main>
@@ -149,7 +186,14 @@ export default function Tarifs() {
               <p className="mt-[22px] mb-[30px] text-taupe text-[16.5px] leading-[1.78]">
                 Partagez un massage à deux, en parallèle — idéal pour un cadeau
                 romantique ou un moment de complicité, à domicile sur Toulouse
-                et ses alentours.
+                et ses alentours. Découvrez le déroulé complet sur la page{" "}
+                <Link
+                  href="/massage-duo-toulouse"
+                  className="text-forest font-semibold border-b border-[rgba(192,135,60,.5)] hover:text-bronze"
+                >
+                  massage duo à Toulouse
+                </Link>
+                .
               </p>
               <div>
                 <PriceLine label="Duo · 45 min" price="100 €" size={23} strong />
@@ -166,7 +210,7 @@ export default function Tarifs() {
           </div>
         </section>
 
-        {/* Mention + promo */}
+        {/* Mention tarifaire */}
         <section
           aria-label="Informations tarifaires"
           className="bg-linen py-[clamp(56px,7vw,96px)] px-[clamp(20px,5vw,64px)]"
@@ -181,22 +225,51 @@ export default function Tarifs() {
               — le temps d&apos;installation est en plus. Paiement le jour de
               la séance.
             </p>
-            <div className="mt-10 bg-night rounded-[4px] p-[clamp(28px,4vw,44px)] flex flex-wrap gap-5 items-center justify-center text-left">
-              <div className="flex-[1_1_300px]">
-                <p className="text-[12px] tracking-[.2em] uppercase text-goldlight m-0 mb-[10px] font-semibold">
-                  Pack Bien‑Être · jusqu&apos;au 31/12/2025
-                </p>
-                <p className="font-serif text-[clamp(22px,3vw,32px)] text-linen m-0">
-                  2 séances achetées{" "}
-                  <span className="italic text-goldlight">= 1 offerte</span>
-                </p>
-              </div>
-              <Link
-                href="/contact"
-                className="inline-flex items-center bg-gold text-night font-bold text-[13px] tracking-[.06em] uppercase px-[30px] py-[15px] rounded-[2px] transition-[background-color,transform] duration-[400ms] hover:bg-goldlight hover:-translate-y-[2px] hover:text-night"
-              >
-                En profiter
-              </Link>
+          </div>
+        </section>
+
+        {/* FAQ tarifs */}
+        <section
+          aria-labelledby="h-tarifs-faq"
+          className="bg-sand py-[clamp(56px,8vw,104px)] px-[clamp(20px,5vw,64px)]"
+        >
+          <div className="max-w-[840px] mx-auto">
+            <p
+              data-reveal
+              className="text-[13px] tracking-[.24em] uppercase font-semibold text-bronze m-0 mb-4"
+            >
+              Questions fréquentes
+            </p>
+            <h2
+              id="h-tarifs-faq"
+              data-reveal="80"
+              className="font-serif font-normal text-[clamp(26px,3.6vw,42px)] leading-[1.1] text-ink m-0 max-w-[18ch]"
+            >
+              Tout savoir avant de réserver
+            </h2>
+            <div data-reveal="160" className="mt-8 border-t border-[rgba(34,28,21,.14)]">
+              {FAQ.map((f) => (
+                <details
+                  key={f.q}
+                  name="faq-tarifs"
+                  className="group border-b border-[rgba(34,28,21,.14)]"
+                >
+                  <summary className="flex items-center gap-4 py-5 px-1 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                    <span className="flex-1 font-serif text-[19px] text-cocoa transition-colors duration-[400ms] group-open:text-ink">
+                      {f.q}
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="font-sans text-[22px] font-light leading-none text-bronze transition-transform duration-[400ms] group-open:rotate-45 group-open:text-gold"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <p className="m-0 px-1 pb-6 text-taupe text-[15.5px] leading-[1.75] max-w-[66ch]">
+                    {f.a}
+                  </p>
+                </details>
+              ))}
             </div>
           </div>
         </section>

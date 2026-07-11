@@ -7,42 +7,41 @@ import SeanceAccordion from "@/components/SeanceAccordion";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import BenefitCard from "@/components/massage/BenefitCard";
+import Credentials from "@/components/massage/Credentials";
 import Gallery from "@/components/massage/Gallery";
 import IdealAside from "@/components/massage/IdealAside";
 import OtherMassages from "@/components/massage/OtherMassages";
+import PrepareSection from "@/components/massage/PrepareSection";
 import PriceLine from "@/components/massage/PriceLine";
 import TimeGuarantee from "@/components/massage/TimeGuarantee";
+import { businessRef } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Massage sportif à domicile Toulouse — deep tissue | Alex Massage",
+  title: "Massage sportif à domicile Toulouse | Alex Massage",
   description:
-    "Massage suédois / sportif (deep tissue) à domicile à Toulouse : pétrissage profond, récupération musculaire, moins de tensions. Formules dès 50 €. Réservez.",
+    "Massage sportif (deep tissue) à domicile à Toulouse : pétrissage profond, récupération, préparation à l'effort. Dès 50 €. Réservez.",
   alternates: {
-    canonical: "https://www.alexmassage.fr/massage-suedois-sportif-toulouse",
+    canonical: "https://www.alexmassage.fr/massage-sportif-toulouse",
   },
   openGraph: {
     type: "article",
     locale: "fr_FR",
-    title: "Massage suédois / sportif à domicile à Toulouse — Alex Massage",
+    title: "Massage sportif à domicile à Toulouse — Alex Massage",
     description:
       "Le massage deep tissue qui dénoue en profondeur et accélère la récupération, chez vous à Toulouse.",
+    images: ["/og-image.jpg"],
   },
 };
 
 const serviceLd = {
   "@context": "https://schema.org",
   "@type": "Service",
-  serviceType: "Massage suédois / sportif à domicile",
-  name: "Massage suédois / sportif (deep tissue) à domicile à Toulouse",
+  serviceType: "Massage sportif à domicile",
+  name: "Massage sportif (deep tissue) à domicile à Toulouse",
   areaServed: { "@type": "City", name: "Toulouse" },
-  provider: {
-    "@type": "HealthAndBeautyBusiness",
-    name: "Alex Massage",
-    telephone: "+33771838010",
-    areaServed: "Toulouse",
-  },
+  provider: businessRef,
   description:
-    "Massage suédois / sportif à domicile à Toulouse : pétrissage profond pour dénouer les tensions et favoriser la récupération musculaire.",
+    "Massage sportif / suédois à domicile à Toulouse : pétrissage profond pour dénouer les tensions et favoriser la récupération musculaire.",
   offers: [
     { "@type": "Offer", name: "45 min", price: "50", priceCurrency: "EUR" },
     { "@type": "Offer", name: "1 h", price: "60", priceCurrency: "EUR" },
@@ -56,7 +55,7 @@ const breadcrumbLd = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.alexmassage.fr/" },
     { "@type": "ListItem", position: 2, name: "Mes massages", item: "https://www.alexmassage.fr/mes-massages-toulouse" },
-    { "@type": "ListItem", position: 3, name: "Massage suédois / sportif", item: "https://www.alexmassage.fr/massage-suedois-sportif-toulouse" },
+    { "@type": "ListItem", position: 3, name: "Massage sportif", item: "https://www.alexmassage.fr/massage-sportif-toulouse" },
   ],
 };
 
@@ -107,7 +106,26 @@ const faqLd = {
   ],
 };
 
-export default function MassageSuedois() {
+const SPORTS = [
+  {
+    t: "Course & trail",
+    a: "Mollets, ischio-jambiers et fascia plantaire sollicités par les kilomètres — un travail profond des jambes pour relâcher et prévenir les blessures, avant le marathon de Toulouse ou après une sortie longue.",
+  },
+  {
+    t: "Musculation & CrossFit",
+    a: "Trapèzes, lombaires et épaules chargés séance après séance : pétrissages fermes et pressions ciblées pour défaire les nœuds et retrouver l'amplitude.",
+  },
+  {
+    t: "Rugby & sports de contact",
+    a: "Après les impacts, un travail global de décompression musculaire — cuisses, dos, nuque — pour accélérer la récupération entre deux matchs.",
+  },
+  {
+    t: "Vélo & sports d'endurance",
+    a: "Quadriceps, psoas et nuque figés par la position : étirements et pressions profondes pour relancer la circulation et délier les chaînes musculaires.",
+  },
+];
+
+export default function MassageSportif() {
   return (
     <>
       <JsonLd data={serviceLd} />
@@ -118,11 +136,13 @@ export default function MassageSuedois() {
       <main>
         <PageHero
           kicker="Massage sportif"
-          title="Massage suédois / Sportif à Toulouse"
-          crumb="Massage suédois / sportif"
+          title="Massage sportif à domicile à Toulouse"
+          crumb="Massage sportif"
           image="/images/massage-sportif.webp"
           imageAlt="Pétrissage profond du dos, massage sportif"
         />
+
+        <Credentials />
 
         <section
           aria-labelledby="h-sued-intro"
@@ -140,11 +160,11 @@ export default function MassageSuedois() {
                 Dénouer en profondeur, récupérer plus vite
               </h2>
               <p className="mt-[26px] mb-0 text-taupe text-[17px] leading-[1.8]">
-                Aussi appelé «{" "}
+                Issu du massage suédois et aussi appelé «{" "}
                 <strong className="text-cocoa font-semibold">
                   Deep Tissue
                 </strong>{" "}
-                », le massage suédois est une technique puissante qui cible les
+                », le massage sportif est une technique puissante qui cible les
                 couches profondes des muscles et des tissus conjonctifs. Conçu
                 pour les sportifs comme pour ceux qui accumulent les tensions
                 du quotidien, il aide à éliminer les nœuds et à relancer la
@@ -178,6 +198,52 @@ export default function MassageSuedois() {
                 { dt: "Lieu", dd: "À domicile · Toulouse 30 km" },
               ]}
             />
+          </div>
+        </section>
+
+        {/* Cas d'usage par sport */}
+        <section
+          aria-labelledby="h-sued-sports"
+          className="bg-sand py-[clamp(56px,8vw,104px)] px-[clamp(20px,5vw,64px)]"
+        >
+          <div className="max-w-[1120px] mx-auto">
+            <p
+              data-reveal
+              className="text-[13px] tracking-[.24em] uppercase font-semibold text-bronze m-0 mb-4"
+            >
+              Selon votre pratique
+            </p>
+            <h2
+              id="h-sued-sports"
+              data-reveal="80"
+              className="font-serif font-normal text-[clamp(26px,3.6vw,42px)] leading-[1.1] text-ink m-0 max-w-[20ch]"
+            >
+              Un travail adapté à votre sport
+            </h2>
+            <p
+              data-reveal="140"
+              className="mt-5 mb-0 text-taupe text-[16.5px] leading-[1.78] max-w-[62ch]"
+            >
+              Avant l&apos;effort pour préparer les muscles, ou dans les 24 à
+              48 heures qui suivent pour accélérer la récupération — le
+              protocole se cale sur votre discipline et votre calendrier.
+            </p>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-[clamp(20px,2.4vw,32px)] mt-[clamp(32px,4vw,48px)]">
+              {SPORTS.map((s, i) => (
+                <div
+                  key={s.t}
+                  data-reveal={i ? String(i * 90) : ""}
+                  className="bg-cream border border-[rgba(34,28,21,.08)] rounded-[4px] px-[26px] py-7"
+                >
+                  <h3 className="font-serif font-normal text-[21px] text-ink m-0 mb-[10px]">
+                    {s.t}
+                  </h3>
+                  <p className="m-0 text-taupe text-[15px] leading-[1.7]">
+                    {s.a}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -280,6 +346,8 @@ export default function MassageSuedois() {
         </section>
 
         <SeanceAccordion />
+
+        <PrepareSection />
 
         <OtherMassages exclude="sued" headingId="h-sued-autres" />
 

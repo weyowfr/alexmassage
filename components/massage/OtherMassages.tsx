@@ -19,7 +19,7 @@ const CARDS: Record<
     text: "Ayurvéda, huile chaude et sept chakras pour se rééquilibrer.",
   },
   sued: {
-    href: "/massage-suedois-sportif-toulouse",
+    href: "/massage-sportif-toulouse",
     tag: "Sportif",
     title: "Suédois / Deep Tissue",
     text: "Pétrissage profond pour dénouer et récupérer.",
@@ -31,7 +31,7 @@ export default function OtherMassages({
   exclude,
   headingId,
 }: {
-  exclude: Key;
+  exclude?: Key;
   headingId: string;
 }) {
   const others = (Object.keys(CARDS) as Key[]).filter((k) => k !== exclude);

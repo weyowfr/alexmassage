@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState } from "react";
+import { sendBooking, type BookingState } from "@/app/actions/booking";
 
 type Variant = "massage" | "cadeau" | "entreprise" | "contact";
 
@@ -72,6 +73,29 @@ export const labelClass =
 export const submitClass =
   "w-full border-none cursor-pointer font-sans bg-gold text-night font-bold text-[13.5px] tracking-[.06em] uppercase px-6 py-[17px] rounded-[2px] transition-[background-color,transform] duration-[400ms] mt-1 hover:bg-goldlight hover:-translate-y-[2px]";
 
+export function FormError({ text }: { text: string }) {
+  return (
+    <p
+      role="alert"
+      className="m-0 text-[14px] leading-[1.6] text-[#8a3b2a] bg-[rgba(138,59,42,.07)] border border-[rgba(138,59,42,.25)] rounded-[3px] px-4 py-3"
+    >
+      {text}
+    </p>
+  );
+}
+
+/* Champ honeypot anti-spam : caché aux humains, rempli par les bots. */
+export function HoneypotField() {
+  return (
+    <div aria-hidden="true" className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden">
+      <label>
+        Ne pas remplir ce champ
+        <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+      </label>
+    </div>
+  );
+}
+
 export function FormSuccess({ title, text }: { title: string; text: string }) {
   return (
     <div className="text-center py-[34px] px-[10px]">
@@ -97,7 +121,11 @@ export default function BookingForm({
   heading,
   sub,
 }: BookingFormProps) {
-  const [sent, setSent] = useState(false);
+  const [state, formAction, pending] = useActionState<BookingState, FormData>(
+    sendBooking,
+    { ok: false },
+  );
+  const sent = state.ok;
   const c = COPY[variant];
 
   const isMassage = variant === "massage";
@@ -156,16 +184,15 @@ export default function BookingForm({
         <form
           data-reveal="120"
           aria-label={heading || c.h}
-          onSubmit={(e) => {
-            e.preventDefault();
-            setSent(true);
-          }}
-          className="bg-cream border border-[rgba(34,28,21,.09)] rounded-md p-[clamp(26px,3.4vw,44px)]"
+          action={formAction}
+          className="relative bg-cream border border-[rgba(34,28,21,.09)] rounded-md p-[clamp(26px,3.4vw,44px)]"
         >
           {sent ? (
             <FormSuccess title="C'est envoyé, merci !" text={c.ok} />
           ) : (
             <div className="flex flex-col gap-[18px]">
+              <input type="hidden" name="variant" value={variant} />
+              <HoneypotField />
               <label className="block">
                 <span className={labelClass}>Nom &amp; prénom</span>
                 <input
@@ -434,8 +461,13 @@ export default function BookingForm({
                   placeholder={c.mp}
                 />
               </label>
-              <button type="submit" className={submitClass}>
-                {c.submit}
+              {state.error && <FormError text={state.error} />}
+              <button
+                type="submit"
+                disabled={pending}
+                className={`${submitClass} disabled:opacity-60 disabled:cursor-wait disabled:hover:translate-y-0`}
+              >
+                {pending ? "Envoi en cours…" : c.submit}
               </button>
               <p className="m-0 text-mute text-[12.5px] leading-[1.6] text-center">
                 En envoyant ce formulaire, vous acceptez d&apos;être

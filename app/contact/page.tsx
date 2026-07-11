@@ -4,11 +4,12 @@ import JsonLd from "@/components/JsonLd";
 import PageHero from "@/components/PageHero";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import { businessLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Contact — Réserver un massage à domicile à Toulouse | Alex Massage",
+  title: "Contact — massage à domicile à Toulouse | Alex Massage",
   description:
-    "Réservez votre massage à domicile à Toulouse : formulaire, téléphone 07 71 83 80 10 ou WhatsApp. Zone d'intervention : Toulouse et 30 km alentour. Lun-Ven 9h-19h.",
+    "Réservez votre massage à domicile à Toulouse : téléphone 07 71 83 80 10, WhatsApp ou formulaire. Toulouse et 30 km alentour, lun-ven 9h-19h.",
   alternates: { canonical: "https://www.alexmassage.fr/contact" },
   openGraph: {
     type: "website",
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     title: "Contact — Alex Massage, massage à domicile à Toulouse",
     description:
       "Prenez rendez-vous pour un massage à domicile à Toulouse. Téléphone, WhatsApp ou formulaire.",
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -28,42 +30,6 @@ const breadcrumbLd = {
   ],
 };
 
-const businessLd = {
-  "@context": "https://schema.org",
-  "@type": "HealthAndBeautyBusiness",
-  name: "Alex Massage",
-  telephone: "+33771838010",
-  email: "contact@alexmassage.fr",
-  url: "https://www.alexmassage.fr/contact",
-  priceRange: "€€",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Toulouse",
-    addressRegion: "Occitanie",
-    addressCountry: "FR",
-  },
-  areaServed: [
-    { "@type": "City", name: "Toulouse" },
-    {
-      "@type": "GeoCircle",
-      geoMidpoint: {
-        "@type": "GeoCoordinates",
-        latitude: 43.6045,
-        longitude: 1.4442,
-      },
-      geoRadius: "30000",
-    },
-  ],
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "19:00",
-    },
-  ],
-};
-
 const COMMUNES = [
   "Toulouse",
   "Muret",
@@ -71,6 +37,11 @@ const COMMUNES = [
   "Blagnac",
   "Tournefeuille",
   "Balma",
+  "Labège",
+  "Ramonville-Saint-Agne",
+  "Castanet-Tolosan",
+  "Saint-Orens-de-Gameville",
+  "Plaisance-du-Touch",
 ];
 
 export default function Contact() {
@@ -83,7 +54,7 @@ export default function Contact() {
       <main>
         <PageHero
           kicker="Prendre rendez-vous"
-          title="Réservons votre moment de bien-être"
+          title="Réservez votre massage à domicile à Toulouse"
           crumb="Contact"
           image="/images/massage-jambes.png"
           imageAlt="Mains posées avec sérénité, lumière tamisée"

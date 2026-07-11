@@ -74,24 +74,27 @@ export default function SiteFooter() {
           <h3 className="text-[12px] tracking-[.2em] uppercase font-semibold text-bronze m-0 mb-5">
             Découvrir
           </h3>
+          <Link href="/massage-duo-toulouse" className={footLink}>
+            Massage duo
+          </Link>
           <Link href="/massage-entreprise-toulouse" className={footLink}>
             Massage en entreprise
           </Link>
           <Link href="/contact" className={footLink}>
             Contact
           </Link>
-          <a href="#" className={footLink}>
+          <Link href="/mentions-legales" className={footLink}>
             Mentions légales
-          </a>
-          <a href="#" className={footLink}>
+          </Link>
+          <Link href="/politique-cookies" className={footLink}>
             Politique de cookies
-          </a>
+          </Link>
         </div>
       </div>
 
       <div className="max-w-[1200px] mx-auto mt-[52px] border-t border-[rgba(34,28,21,.13)] pt-6 pb-8 flex flex-wrap gap-3 justify-between items-center">
         <span className="text-[12.5px] text-mute tracking-[.02em]">
-          © 2025 Alex Massage — Massage bien-être à domicile à Toulouse.
+          © {new Date().getFullYear()} Alex Massage — Massage bien-être à domicile à Toulouse.
         </span>
         <span className="font-serif italic text-[14px] text-bronze">
           Le rituel qui vient à vous.

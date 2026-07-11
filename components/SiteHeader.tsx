@@ -17,13 +17,12 @@ const MASSAGES = [
   { href: "/mes-massages-toulouse", label: "Vue d'ensemble" },
   { href: "/massage-californien-toulouse", label: "Relaxant / Californien" },
   { href: "/massage-abhyanga-toulouse", label: "Énergétique / Abhyanga" },
-  { href: "/massage-suedois-sportif-toulouse", label: "Suédois / Sportif" },
+  { href: "/massage-sportif-toulouse", label: "Suédois / Sportif" },
 ];
 
 export default function SiteHeader({ current = "" }: { current?: NavKey }) {
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
-  const [sub, setSub] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 36);
@@ -98,47 +97,38 @@ export default function SiteHeader({ current = "" }: { current?: NavKey }) {
           <Link href="/mon-histoire" className={navLink("histoire")}>
             Mon histoire
           </Link>
-          <span
-            className="relative inline-flex"
-            onMouseEnter={() => setSub(true)}
-            onMouseLeave={() => setSub(false)}
-          >
+          {/* Sous-menu toujours dans le DOM (crawlable), affiché en CSS
+              au survol ou au focus clavier. */}
+          <span className="relative inline-flex group/nav">
             <Link
               href="/mes-massages-toulouse"
               className={navLink("massages")}
               aria-haspopup="true"
-              aria-expanded={sub}
             >
               Mes massages
-              <span
-                className={`text-[11px] inline-block transition-transform duration-[350ms] ${
-                  sub ? "rotate-180" : ""
-                }`}
-              >
+              <span className="text-[11px] inline-block transition-transform duration-[350ms] group-hover/nav:rotate-180">
                 ⌄
               </span>
             </Link>
-            {sub && (
-              <div
-                role="menu"
-                className="absolute top-[calc(100%+14px)] left-1/2 -translate-x-1/2 min-w-[250px] bg-cream rounded-[3px] border border-[rgba(34,28,21,.08)] shadow-[0_30px_60px_-24px_rgba(34,28,21,.4)] p-[10px] flex flex-col z-[1001] animate-[fadeIn_.3s_ease_both]"
-              >
-                {MASSAGES.map((m, i) => (
-                  <Link
-                    key={m.href}
-                    href={m.href}
-                    role="menuitem"
-                    className={`px-[14px] py-[11px] text-[13px] font-medium tracking-[.02em] normal-case text-ink rounded-[2px] transition-[background-color,color] duration-300 hover:bg-[rgba(192,135,60,.12)] hover:text-bronze ${
-                      i < MASSAGES.length - 1
-                        ? "border-b border-[rgba(34,28,21,.06)]"
-                        : ""
-                    }`}
-                  >
-                    {m.label}
-                  </Link>
-                ))}
-              </div>
-            )}
+            <div
+              role="menu"
+              className="hidden group-hover/nav:flex group-focus-within/nav:flex absolute top-full left-1/2 -translate-x-1/2 min-w-[250px] bg-cream rounded-[3px] border border-[rgba(34,28,21,.08)] shadow-[0_30px_60px_-24px_rgba(34,28,21,.4)] p-[10px] mt-[14px] flex-col z-[1001] animate-[fadeIn_.3s_ease_both] before:content-[''] before:absolute before:-top-[14px] before:left-0 before:right-0 before:h-[14px]"
+            >
+              {MASSAGES.map((m, i) => (
+                <Link
+                  key={m.href}
+                  href={m.href}
+                  role="menuitem"
+                  className={`px-[14px] py-[11px] text-[13px] font-medium tracking-[.02em] normal-case text-ink rounded-[2px] transition-[background-color,color] duration-300 hover:bg-[rgba(192,135,60,.12)] hover:text-bronze ${
+                    i < MASSAGES.length - 1
+                      ? "border-b border-[rgba(34,28,21,.06)]"
+                      : ""
+                  }`}
+                >
+                  {m.label}
+                </Link>
+              ))}
+            </div>
           </span>
           <Link href="/tarifs-massage-toulouse" className={navLink("tarifs")}>
             Tarifs
@@ -156,12 +146,20 @@ export default function SiteHeader({ current = "" }: { current?: NavKey }) {
             Entreprise
           </Link>
         </nav>
-        <Link
-          href="/contact"
-          className="hidden min-[992px]:inline-flex items-center bg-forest text-linen text-[12.5px] font-semibold tracking-[.08em] uppercase px-6 py-[13px] rounded-[2px] whitespace-nowrap shrink-0 transition-[background-color,transform] duration-[400ms] hover:bg-forestlight hover:-translate-y-[2px] hover:text-linen"
-        >
-          Prendre rendez-vous
-        </Link>
+        <span className="hidden min-[992px]:inline-flex items-center gap-[18px] shrink-0">
+          <a
+            href="tel:+33771838010"
+            className={`inline-flex items-center gap-[7px] text-[13px] font-semibold tracking-[.04em] whitespace-nowrap transition-colors duration-500 hover:text-gold ${txt}`}
+          >
+            <span aria-hidden="true">✆</span> 07 71 83 80 10
+          </a>
+          <Link
+            href="/contact"
+            className="inline-flex items-center bg-forest text-linen text-[12.5px] font-semibold tracking-[.08em] uppercase px-6 py-[13px] rounded-[2px] whitespace-nowrap shrink-0 transition-[background-color,transform] duration-[400ms] hover:bg-forestlight hover:-translate-y-[2px] hover:text-linen"
+          >
+            Prendre rendez-vous
+          </Link>
+        </span>
 
         {/* Burger mobile */}
         <button
@@ -176,9 +174,14 @@ export default function SiteHeader({ current = "" }: { current?: NavKey }) {
         </button>
       </header>
 
-      {/* Menu mobile plein écran */}
-      {menu && (
-        <div className="fixed inset-0 z-[1200] bg-linen flex flex-col p-[clamp(20px,6vw,48px)] pt-[92px] overflow-y-auto animate-[fadeIn_.4s_ease_both]">
+      {/* Menu mobile plein écran — toujours dans le DOM (liens crawlables),
+          visibilité pilotée en CSS. */}
+      <div
+        aria-hidden={!menu}
+        className={`fixed inset-0 z-[1200] bg-linen flex flex-col p-[clamp(20px,6vw,48px)] pt-[92px] overflow-y-auto transition-opacity duration-300 ${
+          menu ? "opacity-100 animate-[fadeIn_.4s_ease_both]" : "opacity-0 invisible pointer-events-none"
+        }`}
+      >
           <button
             onClick={closeMenu}
             aria-label="Fermer le menu"
@@ -216,7 +219,7 @@ export default function SiteHeader({ current = "" }: { current?: NavKey }) {
                 Énergétique / Abhyanga
               </Link>
               <Link
-                href="/massage-suedois-sportif-toulouse"
+                href="/massage-sportif-toulouse"
                 onClick={closeMenu}
                 className={overSubLink}
               >
@@ -250,20 +253,19 @@ export default function SiteHeader({ current = "" }: { current?: NavKey }) {
           </nav>
           <div className="flex flex-wrap gap-3 mt-7">
             <a
-              href="tel:+33771838010"
+              href="https://wa.me/33771838010"
               className="inline-flex items-center bg-forest text-linen text-[13px] font-semibold tracking-[.06em] uppercase px-[26px] py-[15px] rounded-[2px] transition-[background-color,transform] duration-[400ms] hover:bg-forestlight hover:-translate-y-[2px] hover:text-linen"
+            >
+              WhatsApp — réponse rapide
+            </a>
+            <a
+              href="tel:+33771838010"
+              className="inline-flex items-center bg-transparent text-forest border border-[rgba(44,64,52,.4)] text-[13px] font-semibold tracking-[.06em] uppercase px-[26px] py-[15px] rounded-[2px] transition-[background-color,color] duration-300 hover:bg-[rgba(44,64,52,.08)] hover:text-forest"
             >
               Appeler — 07 71 83 80 10
             </a>
-            <a
-              href="https://wa.me/33771838010"
-              className="inline-flex items-center bg-transparent text-forest border border-[rgba(44,64,52,.4)] text-[13px] font-semibold tracking-[.06em] uppercase px-[26px] py-[15px] rounded-[2px] transition-[background-color,color] duration-300 hover:bg-[rgba(44,64,52,.08)] hover:text-forest"
-            >
-              WhatsApp
-            </a>
           </div>
-        </div>
-      )}
+      </div>
     </>
   );
 }

@@ -5,6 +5,7 @@ import PageHero from "@/components/PageHero";
 import RdvBand from "@/components/RdvBand";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import { businessRef } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "Mon histoire — Alexandre, masseur bien-être à Toulouse",
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
     title: "Mon histoire — Alexandre, masseur bien-être à Toulouse",
     description:
       "Une vocation née en Inde et en Thaïlande, une pratique ancrée à Toulouse.",
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -42,12 +44,25 @@ const breadcrumbLd = {
 const personLd = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "https://www.alexmassage.fr/mon-histoire#alexandre",
   name: "Alexandre",
   jobTitle: "Masseur bien-être",
-  worksFor: { "@type": "HealthAndBeautyBusiness", name: "Alex Massage" },
+  url: "https://www.alexmassage.fr/mon-histoire",
+  worksFor: businessRef,
+  alumniOf: {
+    "@type": "EducationalOrganization",
+    name: "Institut Temana",
+    address: { "@type": "PostalAddress", addressLocality: "Toulouse", addressCountry: "FR" },
+  },
+  knowsAbout: [
+    "Massage californien",
+    "Massage abhyanga (Ayurvéda)",
+    "Massage suédois / sportif",
+    "Massage amma assis en entreprise",
+  ],
   areaServed: "Toulouse",
   description:
-    "Masseur bien-être à domicile à Toulouse, formé à l'Institut Temana, passeur de bien-être.",
+    "Masseur bien-être à domicile à Toulouse, formé à l'Institut Temana, expérience en spa de palace, passeur de bien-être.",
 };
 
 const chapterImg =
@@ -99,6 +114,41 @@ export default function MonHistoire() {
           className="bg-linen px-[clamp(20px,5vw,64px)] pb-[clamp(30px,5vw,70px)]"
         >
           <div className="max-w-[1080px] mx-auto flex flex-col gap-[clamp(40px,6vw,88px)]">
+            <div
+              data-reveal
+              className="flex flex-wrap-reverse gap-[clamp(28px,4vw,60px)] items-center"
+            >
+              <div className={chapterTxt}>
+                <span className={chapterKicker}>Avant</span>
+                <h3 className={chapterTitle}>
+                  Trente ans d&apos;une première vie
+                </h3>
+                <p className={`${chapterPara} mb-4`}>
+                  Pendant trente ans, j&apos;ai été entrepreneur : des
+                  journées denses, des décisions rapides, un corps et un
+                  esprit sollicités en permanence. Je connais de
+                  l&apos;intérieur cette fatigue-là — celle qu&apos;on ne
+                  s&apos;avoue pas, qui s&apos;installe dans la nuque, le dos,
+                  le sommeil.
+                </p>
+                <p className={chapterPara}>
+                  C&apos;est précisément parce que j&apos;ai vécu ce rythme
+                  que je comprends celles et ceux que je masse
+                  aujourd&apos;hui : je ne propose pas un soin abstrait, mais
+                  la pause que j&apos;aurais aimé recevoir.
+                </p>
+              </div>
+              <div className={chapterImg}>
+                <Image
+                  src="/images/institut-muret.jpeg"
+                  alt="Espace de soin calme, lumière douce"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+            </div>
+
             <div
               data-reveal
               className="flex flex-wrap gap-[clamp(28px,4vw,60px)] items-center"
@@ -208,6 +258,69 @@ export default function MonHistoire() {
                   <em className="text-bronze italic">passeur de bien‑être</em>{" "}
                   : celui qui apporte, jusque chez vous, un moment de calme
                   dans un quotidien qui va trop vite.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Engagements */}
+        <section
+          aria-labelledby="h-hist-engagements"
+          className="bg-linen py-[clamp(56px,8vw,104px)] px-[clamp(20px,5vw,64px)]"
+        >
+          <div className="max-w-[1080px] mx-auto">
+            <p
+              data-reveal
+              className="text-[13px] tracking-[.24em] uppercase font-semibold text-bronze m-0 mb-4"
+            >
+              Ma manière de travailler
+            </p>
+            <h2
+              id="h-hist-engagements"
+              data-reveal="80"
+              className="font-serif font-normal text-[clamp(26px,3.6vw,42px)] leading-[1.1] text-ink m-0 max-w-[20ch]"
+            >
+              Ce que je vous garantis, à chaque séance
+            </h2>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-[clamp(20px,2.4vw,32px)] mt-[clamp(32px,4vw,48px)]">
+              <div data-reveal className="bg-cream border border-[rgba(34,28,21,.08)] rounded-[4px] px-[26px] py-7">
+                <h3 className="font-serif font-normal text-[21px] text-ink m-0 mb-[10px]">
+                  Le temps annoncé, massé
+                </h3>
+                <p className="m-0 text-taupe text-[15px] leading-[1.7]">
+                  L&apos;installation est en plus : une heure réservée est une
+                  heure de massage, pas cinquante minutes.
+                </p>
+              </div>
+              <div data-reveal="90" className="bg-cream border border-[rgba(34,28,21,.08)] rounded-[4px] px-[26px] py-7">
+                <h3 className="font-serif font-normal text-[21px] text-ink m-0 mb-[10px]">
+                  L&apos;écoute d&apos;abord
+                </h3>
+                <p className="m-0 text-taupe text-[15px] leading-[1.7]">
+                  Chaque séance commence par un échange et s&apos;adapte à
+                  votre corps du jour — pression, rythme, zones à éviter ou à
+                  privilégier.
+                </p>
+              </div>
+              <div data-reveal="180" className="bg-cream border border-[rgba(34,28,21,.08)] rounded-[4px] px-[26px] py-7">
+                <h3 className="font-serif font-normal text-[21px] text-ink m-0 mb-[10px]">
+                  Pudeur et hygiène
+                </h3>
+                <p className="m-0 text-taupe text-[15px] leading-[1.7]">
+                  Draps et serviettes frais à chaque séance, installation
+                  respectueuse de votre intimité, cadre professionnel du
+                  premier au dernier geste.
+                </p>
+              </div>
+              <div data-reveal="270" className="bg-cream border border-[rgba(34,28,21,.08)] rounded-[4px] px-[26px] py-7">
+                <h3 className="font-serif font-normal text-[21px] text-ink m-0 mb-[10px]">
+                  Bien-être, pas médical
+                </h3>
+                <p className="m-0 text-taupe text-[15px] leading-[1.7]">
+                  Mes massages sont des soins de bien-être : ils ne remplacent
+                  ni kinésithérapie ni avis médical, et je vous le dirai
+                  toujours honnêtement.
                 </p>
               </div>
             </div>

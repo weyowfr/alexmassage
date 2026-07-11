@@ -1,7 +1,3 @@
-"use client";
-
-import { useState } from "react";
-
 const DATA = [
   {
     t: "Avant la séance",
@@ -29,9 +25,9 @@ const DATA = [
   },
 ];
 
+/* <details>/<summary> natif : le contenu des 6 panneaux est présent dans le
+   HTML SSR (crawlable), l'attribut name assure l'ouverture exclusive. */
 export default function SeanceAccordion() {
-  const [open, setOpen] = useState(0);
-
   return (
     <section className="bg-linen py-[clamp(56px,8vw,104px)]">
       <div className="max-w-[840px] mx-auto px-[clamp(20px,5vw,40px)]">
@@ -51,52 +47,32 @@ export default function SeanceAccordion() {
           data-reveal="160"
           className="mt-10 border-t border-[rgba(34,28,21,.14)]"
         >
-          {DATA.map((d, i) => {
-            const isOpen = open === i;
-            return (
-              <div key={d.t} className="border-b border-[rgba(34,28,21,.14)]">
-                <button
-                  onClick={() => setOpen(isOpen ? -1 : i)}
-                  aria-expanded={isOpen}
-                  className="flex items-center gap-[18px] w-full py-6 px-1 bg-transparent border-none cursor-pointer text-left"
+          {DATA.map((d, i) => (
+            <details
+              key={d.t}
+              name="seance"
+              open={i === 0}
+              className="group border-b border-[rgba(34,28,21,.14)]"
+            >
+              <summary className="flex items-center gap-[18px] w-full py-6 px-1 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                <span className="font-serif italic text-[15px] min-w-[26px] text-beige transition-colors duration-[400ms] group-open:text-gold">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="flex-1 font-serif text-[clamp(18px,2.2vw,24px)] font-normal tracking-[.01em] text-cocoa transition-colors duration-[400ms] group-open:text-ink">
+                  {d.t}
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="font-sans text-[24px] font-light leading-none text-bronze transition-[transform,color] duration-[400ms] ease-[cubic-bezier(.22,.61,.36,1)] group-open:text-gold group-open:rotate-45"
                 >
-                  <span
-                    className={`font-serif italic text-[15px] min-w-[26px] transition-colors duration-[400ms] ${
-                      isOpen ? "text-gold" : "text-beige"
-                    }`}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span
-                    className={`flex-1 font-serif text-[clamp(18px,2.2vw,24px)] font-normal tracking-[.01em] transition-colors duration-[400ms] ${
-                      isOpen ? "text-ink" : "text-cocoa"
-                    }`}
-                  >
-                    {d.t}
-                  </span>
-                  <span
-                    aria-hidden="true"
-                    className={`font-sans text-[24px] font-light leading-none transition-[transform,color] duration-[400ms] ease-[cubic-bezier(.22,.61,.36,1)] ${
-                      isOpen ? "text-gold rotate-45" : "text-bronze"
-                    }`}
-                  >
-                    +
-                  </span>
-                </button>
-                <div
-                  className="overflow-hidden transition-[max-height,opacity] duration-[600ms] ease-[cubic-bezier(.22,.61,.36,1)]"
-                  style={{
-                    maxHeight: isOpen ? 360 : 0,
-                    opacity: isOpen ? 1 : 0,
-                  }}
-                >
-                  <p className="m-0 pl-11 pr-1 pb-7 text-taupe text-[16px] leading-[1.78] max-w-[64ch]">
-                    {d.a}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+                  +
+                </span>
+              </summary>
+              <p className="m-0 pl-11 pr-1 pb-7 text-taupe text-[16px] leading-[1.78] max-w-[64ch]">
+                {d.a}
+              </p>
+            </details>
+          ))}
         </div>
       </div>
     </section>

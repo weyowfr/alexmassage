@@ -9,7 +9,7 @@ import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 
 export const metadata: Metadata = {
-  title: "Mes massages à domicile à Toulouse — relaxant, énergétique, sportif",
+  title: "Mes massages à domicile à Toulouse | Alex Massage",
   description:
     "Découvrez mes 3 massages à domicile à Toulouse : californien relaxant, abhyanga énergétique, suédois sportif. Solo ou duo, dès 30 €. Réservez votre séance.",
   alternates: { canonical: "https://www.alexmassage.fr/mes-massages-toulouse" },
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     title: "Mes massages à domicile à Toulouse — Alex Massage",
     description:
       "Trois protocoles, trois intentions : relaxant, énergétique, sportif. À domicile à Toulouse.",
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -61,8 +62,8 @@ const itemListLd = {
     {
       "@type": "ListItem",
       position: 3,
-      name: "Massage suédois / sportif",
-      url: "https://www.alexmassage.fr/massage-suedois-sportif-toulouse",
+      name: "Massage sportif",
+      url: "https://www.alexmassage.fr/massage-sportif-toulouse",
     },
   ],
 };
@@ -91,11 +92,11 @@ const PROTOCOLS = [
     delay: "80",
   },
   {
-    href: "/massage-suedois-sportif-toulouse",
+    href: "/massage-sportif-toulouse",
     img: "/images/massage-sportif.webp",
     alt: "Massage sportif, pétrissage profond des épaules",
     num: "03 · Sportif",
-    title: "Suédois / Deep Tissue",
+    title: "Sportif / Deep Tissue",
     text: "Pétrissage profond et pressions ciblées pour dénouer les tensions, soulager les muscles et accélérer la récupération physique.",
     price: "Formules dès 50 €",
     reverse: false,

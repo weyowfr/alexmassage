@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     title: "Carte cadeau massage à domicile à Toulouse — Alex Massage",
     description:
       "Le cadeau qui fait vraiment plaisir : un massage à domicile à Toulouse. Dès 30 €, valable 1 an.",
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -45,27 +46,6 @@ const productLd = {
     priceCurrency: "EUR",
     offerCount: "6",
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5",
-    reviewCount: "2",
-  },
-  review: [
-    {
-      "@type": "Review",
-      author: { "@type": "Person", name: "Thomas D." },
-      reviewRating: { "@type": "Rating", ratingValue: "5" },
-      reviewBody:
-        "J'ai offert une carte cadeau à ma compagne : réservation simple, Alexandre ponctuel et très professionnel. Un cadeau qui a fait mouche.",
-    },
-    {
-      "@type": "Review",
-      author: { "@type": "Person", name: "Clara B." },
-      reviewRating: { "@type": "Rating", ratingValue: "5" },
-      reviewBody:
-        "Reçue par email en quelques minutes pour l'anniversaire de ma mère. Elle a adoré son massage à domicile. Je recommande les yeux fermés.",
-    },
-  ],
 };
 
 const faqLd = {

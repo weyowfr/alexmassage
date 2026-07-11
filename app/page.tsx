@@ -5,6 +5,7 @@ import JsonLd from "@/components/JsonLd";
 import RdvBand from "@/components/RdvBand";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import { businessLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "Massage à domicile Toulouse — Alex Massage bien‑être",
@@ -18,91 +19,7 @@ export const metadata: Metadata = {
     description:
       "Massage bien‑être à domicile à Toulouse, en solo ou en duo, dès 30 €. Le rituel qui vient à vous.",
     url: "https://www.alexmassage.fr/",
-  },
-};
-
-const businessLd = {
-  "@context": "https://schema.org",
-  "@type": "HealthAndBeautyBusiness",
-  "@id": "https://www.alexmassage.fr/#business",
-  name: "Alex Massage",
-  description:
-    "Massage bien-être à domicile à Toulouse : californien, ayurvédique et sportif, en solo ou en duo.",
-  url: "https://www.alexmassage.fr/",
-  telephone: "+33771838010",
-  email: "contact@alexmassage.fr",
-  priceRange: "€€",
-  image: "https://www.alexmassage.fr/og-image.jpg",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Toulouse",
-    addressRegion: "Occitanie",
-    postalCode: "31000",
-    addressCountry: "FR",
-  },
-  geo: { "@type": "GeoCoordinates", latitude: 43.6045, longitude: 1.4442 },
-  areaServed: [
-    { "@type": "City", name: "Toulouse" },
-    {
-      "@type": "GeoCircle",
-      geoMidpoint: {
-        "@type": "GeoCoordinates",
-        latitude: 43.6045,
-        longitude: 1.4442,
-      },
-      geoRadius: "30000",
-    },
-  ],
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "19:00",
-    },
-  ],
-  makesOffer: [
-    {
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: "Massage relaxant / californien à domicile à Toulouse",
-      },
-      priceSpecification: {
-        "@type": "PriceSpecification",
-        minPrice: 30,
-        priceCurrency: "EUR",
-      },
-    },
-    {
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: "Massage énergétique / abhyanga à domicile à Toulouse",
-      },
-      priceSpecification: {
-        "@type": "PriceSpecification",
-        minPrice: 50,
-        priceCurrency: "EUR",
-      },
-    },
-    {
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: "Massage suédois / sportif à domicile à Toulouse",
-      },
-      priceSpecification: {
-        "@type": "PriceSpecification",
-        minPrice: 50,
-        priceCurrency: "EUR",
-      },
-    },
-  ],
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5",
-    reviewCount: "27",
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -134,7 +51,7 @@ const MASSAGE_CARDS = [
     delay: "120",
   },
   {
-    href: "/massage-suedois-sportif-toulouse",
+    href: "/massage-sportif-toulouse",
     img: "/images/massage-sportif.webp",
     alt: "Massage sportif, pétrissage profond des épaules",
     tags: "Tensions · Récupération · Performance",
@@ -381,45 +298,6 @@ export default function Home() {
                 />
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* ░░ PROMO ░░ */}
-        <section
-          aria-label="Offre en cours"
-          className="relative overflow-hidden"
-          style={{
-            background:
-              "radial-gradient(130% 120% at 12% 10%, #2c2013 0%, #17120E 62%)",
-          }}
-        >
-          <div
-            aria-hidden="true"
-            className="absolute right-[6%] top-1/2 -translate-y-1/2 grid place-items-center pointer-events-none"
-          >
-            <div className="w-[240px] h-[240px] border border-[rgba(216,165,90,.26)] rounded-full animate-[breathe_11s_cubic-bezier(.37,0,.63,1)_infinite]" />
-            <div className="absolute w-[150px] h-[150px] border border-[rgba(216,165,90,.4)] rounded-full animate-[breathe_11s_cubic-bezier(.37,0,.63,1)_infinite] [animation-delay:-1.5s]" />
-          </div>
-          <div className="relative max-w-[1200px] mx-auto py-[clamp(56px,7vw,96px)] px-[clamp(20px,5vw,64px)] flex flex-wrap gap-8 items-center justify-between">
-            <div data-reveal className="max-w-[640px]">
-              <p className="text-[12.5px] tracking-[.22em] uppercase font-semibold text-goldlight m-0 mb-5">
-                Pack Bien‑Être · Automne‑Hiver 2025 — jusqu&apos;au 31/12/2025
-              </p>
-              <h2 className="font-serif font-normal text-[clamp(34px,5.4vw,66px)] leading-[1.04] text-linen m-0">
-                2 séances achetées{" "}
-                <span className="italic text-goldlight">= 1 offerte</span>
-              </h2>
-              <p className="mt-[18px] mb-0 text-[rgba(244,239,231,.72)] text-[16px] tracking-[.02em]">
-                Pour vous, ou pour une personne de votre choix.
-              </p>
-            </div>
-            <Link
-              href="/contact"
-              data-reveal="120"
-              className="inline-flex items-center bg-gold text-night font-bold text-[14px] tracking-[.06em] uppercase px-[38px] py-[17px] rounded-[2px] transition-[background-color,transform] duration-[400ms] shrink-0 hover:bg-goldlight hover:-translate-y-[2px] hover:text-night"
-            >
-              En profiter
-            </Link>
           </div>
         </section>
 

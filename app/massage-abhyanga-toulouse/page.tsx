@@ -7,11 +7,14 @@ import SeanceAccordion from "@/components/SeanceAccordion";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import BenefitCard from "@/components/massage/BenefitCard";
+import Credentials from "@/components/massage/Credentials";
+import PrepareSection from "@/components/massage/PrepareSection";
 import Gallery from "@/components/massage/Gallery";
 import IdealAside from "@/components/massage/IdealAside";
 import OtherMassages from "@/components/massage/OtherMassages";
 import PriceLine from "@/components/massage/PriceLine";
 import TimeGuarantee from "@/components/massage/TimeGuarantee";
+import { businessRef } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "Massage Abhyanga à domicile Toulouse | Alex Massage",
@@ -26,6 +29,7 @@ export const metadata: Metadata = {
     title: "Massage Abhyanga à domicile à Toulouse — Alex Massage",
     description:
       "Le massage ayurvédique à l'huile chaude qui rééquilibre le corps et l'esprit, chez vous à Toulouse.",
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -35,12 +39,7 @@ const serviceLd = {
   serviceType: "Massage énergétique / abhyanga à domicile",
   name: "Massage énergétique / abhyanga à domicile à Toulouse",
   areaServed: { "@type": "City", name: "Toulouse" },
-  provider: {
-    "@type": "HealthAndBeautyBusiness",
-    name: "Alex Massage",
-    telephone: "+33771838010",
-    areaServed: "Toulouse",
-  },
+  provider: businessRef,
   description:
     "Massage ayurvédique Abhyanga à domicile à Toulouse : huile chaude, sept chakras et rééquilibrage énergétique profond.",
   offers: [
@@ -124,6 +123,8 @@ export default function MassageAbhyanga() {
           imageAlt="Huile chaude dorée versée sur le dos, ambiance ayurvédique"
         />
 
+        <Credentials />
+
         <section
           aria-labelledby="h-abhy-intro"
           className="bg-linen py-[clamp(60px,8vw,116px)] px-[clamp(20px,5vw,64px)]"
@@ -177,6 +178,78 @@ export default function MassageAbhyanga() {
                 { dt: "Lieu", dd: "À domicile · Toulouse 30 km" },
               ]}
             />
+          </div>
+        </section>
+
+        {/* L'Ayurvéda en pratique : doshas, huiles, contre-indications */}
+        <section
+          aria-labelledby="h-abhy-ayurveda"
+          className="bg-sand py-[clamp(56px,8vw,104px)] px-[clamp(20px,5vw,64px)]"
+        >
+          <div className="max-w-[1120px] mx-auto">
+            <p
+              data-reveal
+              className="text-[13px] tracking-[.24em] uppercase font-semibold text-bronze m-0 mb-4"
+            >
+              L&apos;Ayurvéda en pratique
+            </p>
+            <h2
+              id="h-abhy-ayurveda"
+              data-reveal="80"
+              className="font-serif font-normal text-[clamp(26px,3.6vw,42px)] leading-[1.1] text-ink m-0 max-w-[20ch]"
+            >
+              Doshas, huiles et gestes : ce qui fait un vrai Abhyanga
+            </h2>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[clamp(24px,3vw,40px)] mt-[clamp(32px,4vw,48px)]">
+              <div data-reveal>
+                <h3 className="font-serif font-normal text-[22px] text-ink m-0 mb-3">
+                  Votre constitution : les trois doshas
+                </h3>
+                <p className="m-0 text-taupe text-[15.5px] leading-[1.75]">
+                  L&apos;Ayurvéda distingue trois énergies vitales :{" "}
+                  <strong className="text-cocoa font-semibold">Vata</strong>{" "}
+                  (air — nervosité, sommeil léger, extrémités froides),{" "}
+                  <strong className="text-cocoa font-semibold">Pitta</strong>{" "}
+                  (feu — intensité, échauffement, irritabilité) et{" "}
+                  <strong className="text-cocoa font-semibold">Kapha</strong>{" "}
+                  (terre-eau — lourdeur, lenteur, rétention). Notre échange en
+                  début de séance m&apos;indique le dosha à apaiser : il guide
+                  le rythme des manœuvres, la pression et la température de
+                  l&apos;huile.
+                </p>
+              </div>
+              <div data-reveal="100">
+                <h3 className="font-serif font-normal text-[22px] text-ink m-0 mb-3">
+                  L&apos;huile chaude, cœur du soin
+                </h3>
+                <p className="m-0 text-taupe text-[15.5px] leading-[1.75]">
+                  Traditionnellement à base de{" "}
+                  <strong className="text-cocoa font-semibold">sésame</strong>{" "}
+                  — réchauffante, nourrissante, adaptée à Vata — l&apos;huile
+                  peut s&apos;orienter vers le tournesol ou la coco, plus
+                  rafraîchissantes, pour apaiser Pitta, ou être appliquée en
+                  plus petite quantité avec des gestes toniques pour stimuler
+                  Kapha. Chauffée au bain-marie juste avant la séance, elle est
+                  appliquée généreusement sur l&apos;ensemble du corps, du cuir
+                  chevelu aux pieds.
+                </p>
+              </div>
+              <div data-reveal="200">
+                <h3 className="font-serif font-normal text-[22px] text-ink m-0 mb-3">
+                  Contre-indications à connaître
+                </h3>
+                <p className="m-0 text-taupe text-[15.5px] leading-[1.75]">
+                  L&apos;Abhyanga est déconseillé en cas de fièvre ou
+                  d&apos;infection en cours, de troubles circulatoires ou
+                  cardiaques non stabilisés, de lésions cutanées étendues, et
+                  pendant le premier trimestre de grossesse. Dans le doute,
+                  parlez-en à votre médecin — et signalez-moi tout antécédent
+                  lors de notre échange : j&apos;adapte ou je reporte la séance
+                  si nécessaire. Massage de bien-être, l&apos;Abhyanga ne
+                  remplace jamais un avis médical.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -279,6 +352,8 @@ export default function MassageAbhyanga() {
         </section>
 
         <SeanceAccordion />
+
+        <PrepareSection />
 
         <OtherMassages exclude="abhy" headingId="h-abhy-autres" />
 

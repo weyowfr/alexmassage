@@ -6,9 +6,10 @@ import PageHero from "@/components/PageHero";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import BenefitCard from "@/components/massage/BenefitCard";
+import { businessRef } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Massage en entreprise à Toulouse — amma assis, QVCT | Alex Massage",
+  title: "Massage en entreprise à Toulouse — amma assis | Alex Massage",
   description:
     "Massage amma assis en entreprise à Toulouse : QVCT, RSE, bien-être au travail. Offrez à vos équipes détente et motivation. Devis rapide — contactez-moi.",
   alternates: {
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
     title: "Massage en entreprise à Toulouse — Alex Massage",
     description:
       "Le massage amma assis qui détend vos équipes et booste la motivation. En entreprise à Toulouse.",
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -29,12 +31,7 @@ const serviceLd = {
   serviceType: "Massage en entreprise — amma assis",
   name: "Massage amma assis en entreprise à Toulouse",
   areaServed: { "@type": "City", name: "Toulouse" },
-  provider: {
-    "@type": "HealthAndBeautyBusiness",
-    name: "Alex Massage",
-    telephone: "+33771838010",
-    areaServed: "Toulouse",
-  },
+  provider: businessRef,
   description:
     "Massage amma assis en entreprise à Toulouse : QVCT, RSE, bien-être au travail, motivation et fidélisation des équipes.",
 };
@@ -232,6 +229,71 @@ export default function MassageEntreprise() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Repères devis : prix, formats, CSE, assurance */}
+        <section
+          aria-labelledby="h-ent-reperes"
+          className="bg-sand py-[clamp(56px,8vw,104px)] px-[clamp(20px,5vw,64px)]"
+        >
+          <div className="max-w-[1120px] mx-auto">
+            <p
+              data-reveal
+              className="text-[13px] tracking-[.24em] uppercase font-semibold text-bronze m-0 mb-4"
+            >
+              Repères pour votre devis
+            </p>
+            <h2
+              id="h-ent-reperes"
+              data-reveal="80"
+              className="font-serif font-normal text-[clamp(26px,3.6vw,42px)] leading-[1.1] text-ink m-0 max-w-[20ch]"
+            >
+              Formats, budget et garanties
+            </h2>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-[clamp(20px,2.4vw,32px)] mt-[clamp(32px,4vw,48px)]">
+              <div data-reveal className="bg-cream border border-[rgba(34,28,21,.08)] rounded-[4px] px-[26px] py-7">
+                <h3 className="font-serif font-normal text-[21px] text-ink m-0 mb-[10px]">
+                  Formats d&apos;intervention
+                </h3>
+                <p className="m-0 text-taupe text-[15px] leading-[1.7]">
+                  Séances de 15 à 20 minutes par collaborateur, soit 3 à 4
+                  personnes massées par heure. Formats de 2 heures, demi-journée
+                  ou journée complète, ponctuels ou récurrents.
+                </p>
+              </div>
+              <div data-reveal="90" className="bg-cream border border-[rgba(34,28,21,.08)] rounded-[4px] px-[26px] py-7">
+                <h3 className="font-serif font-normal text-[21px] text-ink m-0 mb-[10px]">
+                  Devis sur mesure
+                </h3>
+                <p className="m-0 text-taupe text-[15px] leading-[1.7]">
+                  Chaque intervention est chiffrée selon votre effectif, la
+                  durée et le lieu. Devis précis et sans engagement sous 24 h
+                  ouvrées — un appel suffit pour cadrer votre projet.
+                </p>
+              </div>
+              <div data-reveal="180" className="bg-cream border border-[rgba(34,28,21,.08)] rounded-[4px] px-[26px] py-7">
+                <h3 className="font-serif font-normal text-[21px] text-ink m-0 mb-[10px]">
+                  Finançable via le CSE
+                </h3>
+                <p className="m-0 text-taupe text-[15px] leading-[1.7]">
+                  La prestation peut être prise en charge par le budget œuvres
+                  sociales de votre CSE, dans le cadre d&apos;une démarche QVCT.
+                  Facture détaillée fournie.
+                </p>
+              </div>
+              <div data-reveal="270" className="bg-cream border border-[rgba(34,28,21,.08)] rounded-[4px] px-[26px] py-7">
+                <h3 className="font-serif font-normal text-[21px] text-ink m-0 mb-[10px]">
+                  Cadre professionnel
+                </h3>
+                <p className="m-0 text-taupe text-[15px] leading-[1.7]">
+                  Praticien formé à l&apos;Institut Temana, assuré en
+                  responsabilité civile professionnelle. Massage habillé, sur
+                  chaise ergonomique — aucune installation à prévoir de votre
+                  côté, une salle au calme suffit.
+                </p>
+              </div>
             </div>
           </div>
         </section>

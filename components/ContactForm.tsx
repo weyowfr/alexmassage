@@ -1,8 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState } from "react";
+import { sendBooking, type BookingState } from "@/app/actions/booking";
 import {
+  FormError,
   FormSuccess,
+  HoneypotField,
   inputClass,
   labelClass,
   submitClass,
@@ -11,16 +14,17 @@ import {
 
 /* Formulaire de la page Contact (colonne droite). */
 export default function ContactForm() {
-  const [sent, setSent] = useState(false);
+  const [state, formAction, pending] = useActionState<BookingState, FormData>(
+    sendBooking,
+    { ok: false },
+  );
+  const sent = state.ok;
 
   return (
     <form
       aria-label="Formulaire de contact"
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSent(true);
-      }}
-      className="bg-cream border border-[rgba(34,28,21,.09)] rounded-md p-[clamp(26px,3vw,40px)]"
+      action={formAction}
+      className="relative bg-cream border border-[rgba(34,28,21,.09)] rounded-md p-[clamp(26px,3vw,40px)]"
     >
       {sent ? (
         <div className="py-[6px]">
@@ -39,6 +43,8 @@ export default function ContactForm() {
           </p>
 
           <div className="flex flex-col gap-[18px]">
+            <input type="hidden" name="variant" value="contact" />
+            <HoneypotField />
             <label className="block">
               <span className={labelClass}>Nom &amp; prénom</span>
               <input
@@ -105,8 +111,13 @@ export default function ContactForm() {
                 placeholder="Vos disponibilités, votre commune, vos attentes…"
               />
             </label>
-            <button type="submit" className={submitClass}>
-              Envoyer ma demande
+            {state.error && <FormError text={state.error} />}
+            <button
+              type="submit"
+              disabled={pending}
+              className={`${submitClass} disabled:opacity-60 disabled:cursor-wait disabled:hover:translate-y-0`}
+            >
+              {pending ? "Envoi en cours…" : "Envoyer ma demande"}
             </button>
             <p className="m-0 text-mute text-[12.5px] leading-[1.6] text-center">
               En envoyant ce formulaire, vous acceptez d&apos;être
