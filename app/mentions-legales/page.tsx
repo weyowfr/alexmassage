@@ -33,20 +33,21 @@ export default function MentionsLegales() {
           <div className="max-w-[760px] mx-auto">
             <h2 className={h2Class}>Éditeur du site</h2>
             <p className={pClass}>
-              Le site <strong>alexmassage.fr</strong> est édité par Alexandre
-              [NOM À COMPLÉTER], entrepreneur individuel, exerçant sous le nom
-              commercial « Alex Massage ».
+              Le site <strong>alexmassage.fr</strong> est édité par la société{" "}
+              <strong>ALEXANDRE ROUX</strong>, société par actions simplifiée
+              (SAS), exerçant sous le nom commercial « Alex Massage ».
             </p>
             <p className={pClass}>
-              SIRET : [À COMPLÉTER]
+              SIREN : 832 369 888
               <br />
-              Siège : [ADRESSE À COMPLÉTER], Toulouse
+              Siège social : Bâtiment Socrate — Insitu Business, 17 avenue
+              Didier Daurat, 31700 Blagnac
               <br />
               Téléphone : 07 71 83 80 10
               <br />
               Email : contact@alexmassage.fr
               <br />
-              Directeur de la publication : Alexandre [NOM À COMPLÉTER]
+              Directeur de la publication : Alexandre Roux
             </p>
             <p className={pClass}>
               Activité : massages de bien-être, non thérapeutiques et non
@@ -57,9 +58,10 @@ export default function MentionsLegales() {
 
             <h2 className={h2Class}>Hébergement</h2>
             <p className={pClass}>
-              Le site est hébergé par [HÉBERGEUR À COMPLÉTER — ex. Vercel Inc.,
-              440 N Barranca Ave #4133, Covina, CA 91723, États-Unis —
-              vercel.com].
+              Le site est hébergé par Vercel Inc. — 440 N Barranca Avenue
+              #4133, Covina, CA 91723, États-Unis — vercel.com. Les données des
+              formulaires sont traitées conformément à la section « Données
+              personnelles » ci-dessous.
             </p>
 
             <h2 className={h2Class}>Propriété intellectuelle</h2>
