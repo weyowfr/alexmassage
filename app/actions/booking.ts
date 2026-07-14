@@ -33,6 +33,13 @@ const LABELS: [string, string][] = [
   ["message", "Message"],
 ];
 
+/* Envoi via FormSubmit.co : sans compte ni clé API. Au tout premier envoi,
+   FormSubmit adresse un email d'activation à TO_EMAIL — un clic suffit. */
+const TO_EMAIL = process.env.BOOKING_TO_EMAIL ?? "contact@alexmassage.fr";
+const CC_EMAILS =
+  process.env.BOOKING_CC_EMAILS ??
+  "alexandre.roux31@gmail.com,alexmassage31@gmail.com";
+
 const FALLBACK_ERROR =
   "L'envoi n'a pas abouti. Réessayez, ou appelez-moi directement au 07 71 83 80 10.";
 
@@ -57,43 +64,53 @@ export async function sendBooking(
     };
   }
 
-  const lines = LABELS.flatMap(([name, label]) => {
+  // Les libellés servent de clés : FormSubmit les affiche tels quels,
+  // une ligne par champ, dans l'ordre de LABELS.
+  const fields: Record<string, string> = {};
+  for (const [name, label] of LABELS) {
     const value = String(formData.get(name) ?? "").trim();
-    return value ? [`${label} : ${value.slice(0, 2000)}`] : [];
-  });
-
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error("sendBooking: RESEND_API_KEY manquante — demande perdue :", lines);
-    return { ok: false, error: FALLBACK_ERROR };
+    if (value) fields[label] = value.slice(0, 2000);
   }
 
   const email = String(formData.get("email") ?? "").trim();
 
   try {
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
+    const res = await fetch(
+      `https://formsubmit.co/ajax/${encodeURIComponent(TO_EMAIL)}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          // FormSubmit rejette les requêtes sans origine web identifiable.
+          Origin: "https://alexmassage.fr",
+          Referer: "https://alexmassage.fr/",
+        },
+        body: JSON.stringify({
+          _subject: `${subject} — ${nom}`,
+          _template: "table",
+          _captcha: "false",
+          ...(CC_EMAILS ? { _cc: CC_EMAILS } : {}),
+          ...(email ? { _replyto: email } : {}),
+          ...fields,
+        }),
       },
-      body: JSON.stringify({
-        from:
-          process.env.BOOKING_FROM_EMAIL ??
-          "Alex Massage <site@alexmassage.fr>",
-        to: [process.env.BOOKING_TO_EMAIL ?? "contact@alexmassage.fr"],
-        subject: `${subject} — ${nom}`,
-        text: `${lines.join("\n")}\n\n— Envoyé depuis le formulaire alexmassage.fr`,
-        ...(email ? { reply_to: email } : {}),
-      }),
-    });
+    );
 
-    if (!res.ok) {
-      console.error("sendBooking: Resend a répondu", res.status, await res.text());
+    const data = (await res.json().catch(() => null)) as {
+      success?: string | boolean;
+    } | null;
+
+    if (!res.ok || String(data?.success) !== "true") {
+      console.error(
+        "sendBooking: FormSubmit a répondu",
+        res.status,
+        JSON.stringify(data),
+      );
       return { ok: false, error: FALLBACK_ERROR };
     }
   } catch (err) {
-    console.error("sendBooking: échec de l'appel Resend", err);
+    console.error("sendBooking: échec de l'appel FormSubmit", err);
     return { ok: false, error: FALLBACK_ERROR };
   }
 
