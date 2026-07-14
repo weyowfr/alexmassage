@@ -10,6 +10,7 @@ export type NavKey =
   | "tarifs"
   | "cartes"
   | "entreprise"
+  | "blog"
   | "contact"
   | "";
 
@@ -145,6 +146,9 @@ export default function SiteHeader({ current = "" }: { current?: NavKey }) {
           >
             Entreprise
           </Link>
+          <Link href="/blog" className={navLink("blog")}>
+            Blog
+          </Link>
         </nav>
         <span className="hidden min-[992px]:inline-flex items-center gap-[18px] shrink-0">
           <a
@@ -246,6 +250,9 @@ export default function SiteHeader({ current = "" }: { current?: NavKey }) {
               className={overLink}
             >
               Massage en entreprise
+            </Link>
+            <Link href="/blog" onClick={closeMenu} className={overLink}>
+              Blog
             </Link>
             <Link href="/contact" onClick={closeMenu} className={overLink}>
               Contact

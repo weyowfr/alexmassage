@@ -88,6 +88,9 @@ export default function SiteFooter() {
           <Link href="/massage-entreprise-toulouse" className={footLink}>
             Massage en entreprise
           </Link>
+          <Link href="/blog" className={footLink}>
+            Blog &amp; conseils
+          </Link>
           <Link href="/contact" className={footLink}>
             Contact
           </Link>
