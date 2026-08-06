@@ -37,7 +37,8 @@ export default function RdvBand() {
         </h2>
         <p className="text-[rgba(244,239,231,.82)] max-w-[46ch] text-[16.5px] leading-[1.75] m-0">
           Je me déplace chez vous — Toulouse et 30 km alentour — avec ma table,
-          mes huiles et ma musique. Vous n&apos;avez plus qu&apos;à respirer.
+          mes huiles et ma musique. Offrez-vous ce temps rien qu&apos;à vous :
+          vous n&apos;avez plus qu&apos;à respirer.
         </p>
         <div className="flex flex-wrap items-center gap-4 mt-[10px]">
           <Link

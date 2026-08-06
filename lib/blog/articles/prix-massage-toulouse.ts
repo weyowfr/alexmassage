@@ -67,6 +67,7 @@ const article: Article = {
         "**Commencez par 30 minutes** — la formule découverte permet de valider le praticien avant d'investir dans une séance longue.",
         "**Pensez au duo** — à 120 € l'heure pour deux, le [massage duo](/massage-duo-toulouse) revient à 60 € par personne, sans surcoût par rapport au solo.",
         "**La régularité paie plus que la durée** — une séance de 45 minutes par mois entretient mieux le corps qu'une séance marathon annuelle, comme je l'explique dans [à quelle fréquence se faire masser](/blog/a-quelle-frequence-se-faire-masser).",
+        "**L'abonnement** — dès 3 séances achetées, mon [abonnement](/tarifs-massage-toulouse) applique **−15 %** sur la formule : par exemple 3 séances d'une heure à 153 € au lieu de 180 €, soit 27 € d'économie. La façon la plus simple d'inscrire le massage dans une vraie routine bien-être.",
         "**La carte cadeau** — la [carte cadeau massage](/carte-cadeau-massage-toulouse) permet aussi de se faire offrir ses séances aux bonnes occasions.",
       ],
     },

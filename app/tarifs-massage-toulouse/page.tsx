@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import BesoinsReels from "@/components/BesoinsReels";
 import BookingForm from "@/components/BookingForm";
 import JsonLd from "@/components/JsonLd";
 import PageHero from "@/components/PageHero";
@@ -82,6 +83,11 @@ const pricingLd = {
     { "@type": "Offer", name: "Duo — 45 min", price: "100", priceCurrency: "EUR" },
     { "@type": "Offer", name: "Duo — 1 h", price: "120", priceCurrency: "EUR" },
     { "@type": "Offer", name: "Duo — 1 h 30", price: "170", priceCurrency: "EUR" },
+    { "@type": "Offer", name: "Abonnement Solo — 3 × 45 min (−15 %)", price: "127.50", priceCurrency: "EUR" },
+    { "@type": "Offer", name: "Abonnement Solo — 3 × 1 h (−15 %)", price: "153", priceCurrency: "EUR" },
+    { "@type": "Offer", name: "Abonnement Solo — 3 × 1 h 30 (−15 %)", price: "216.75", priceCurrency: "EUR" },
+    { "@type": "Offer", name: "Abonnement Duo — 3 × 1 h (−15 %)", price: "306", priceCurrency: "EUR" },
+    { "@type": "Offer", name: "Abonnement Duo — 3 × 1 h 30 (−15 %)", price: "433.50", priceCurrency: "EUR" },
   ],
 };
 
@@ -211,6 +217,83 @@ export default function Tarifs() {
           </div>
         </section>
 
+        {/* ABONNEMENT */}
+        <section
+          aria-labelledby="h-abo"
+          className="bg-forest py-[clamp(64px,9vw,120px)] px-[clamp(20px,5vw,64px)]"
+        >
+          <div className="max-w-[1160px] mx-auto">
+            <div className="max-w-[680px] mb-[clamp(36px,4vw,56px)]">
+              <p
+                data-reveal
+                className="text-[13px] tracking-[.24em] uppercase font-semibold text-goldlight m-0 mb-4"
+              >
+                Nouveau · Abonnement
+              </p>
+              <h2
+                id="h-abo"
+                data-reveal="80"
+                className="font-serif font-normal text-[clamp(27px,3.6vw,44px)] leading-[1.1] tracking-[-.01em] text-linen m-0 max-w-[20ch]"
+              >
+                Massez-vous régulièrement, économisez 15 %
+              </h2>
+              <p
+                data-reveal="150"
+                className="mt-[22px] mb-0 text-[rgba(244,239,231,.84)] text-[16.5px] leading-[1.78]"
+              >
+                Le massage donne le meilleur de lui-même dans la durée. Dès 3
+                séances achetées, profitez de −15 % sur votre formule — par
+                exemple 3 séances d&apos;une heure à{" "}
+                <strong className="text-goldlight font-semibold">153 €</strong>{" "}
+                au lieu de 180 €, soit 27 € d&apos;économie. Le massage, acteur
+                de votre routine bien-être.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(20px,2.4vw,30px)]">
+              {/* Carnet Solo */}
+              <div
+                data-reveal
+                className="bg-cream border border-[rgba(34,28,21,.07)] rounded-[4px] px-[clamp(24px,3vw,36px)] py-[clamp(28px,3vw,40px)]"
+              >
+                <p className="text-[12px] tracking-[.2em] uppercase text-bronze font-semibold m-0 mb-1">
+                  Carnet Solo · 3 séances
+                </p>
+                <p className="font-serif italic text-taupe text-[15px] m-0 mb-5">
+                  −15 % sur votre formule habituelle
+                </p>
+                <PriceLine label="3 × 45 min" note="au lieu de 150 €" price="127,50 €" />
+                <PriceLine label="3 × 1 heure" note="au lieu de 180 €" price="153 €" strong />
+                <PriceLine label="3 × 1 h 30" note="au lieu de 255 €" price="216,75 €" />
+              </div>
+
+              {/* Carnet Duo */}
+              <div
+                data-reveal="120"
+                className="bg-cream border border-[rgba(34,28,21,.07)] rounded-[4px] px-[clamp(24px,3vw,36px)] py-[clamp(28px,3vw,40px)]"
+              >
+                <p className="text-[12px] tracking-[.2em] uppercase text-bronze font-semibold m-0 mb-1">
+                  Carnet Duo · 3 séances
+                </p>
+                <p className="font-serif italic text-taupe text-[15px] m-0 mb-5">
+                  À deux, la même régularité, −15 %
+                </p>
+                <PriceLine label="3 × 1 heure" note="au lieu de 360 €" price="306 €" strong />
+                <PriceLine label="3 × 1 h 30" note="au lieu de 510 €" price="433,50 €" />
+              </div>
+            </div>
+
+            <p
+              data-reveal="200"
+              className="mt-8 mb-0 text-[rgba(244,239,231,.7)] text-[14px] leading-[1.7]"
+            >
+              Avantage réservé aux carnets d&apos;au moins 3 séances achetées.
+              Séances utilisables sur 1 an, en solo comme en duo, sur tous les
+              massages.
+            </p>
+          </div>
+        </section>
+
         {/* Mention tarifaire */}
         <section
           aria-label="Informations tarifaires"
@@ -274,6 +357,8 @@ export default function Tarifs() {
             </div>
           </div>
         </section>
+
+        <BesoinsReels bg="bg-linen" />
 
         <BookingForm
           variant="massage"

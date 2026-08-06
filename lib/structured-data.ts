@@ -9,7 +9,7 @@ export const businessLd = {
   "@id": BUSINESS_ID,
   name: "Alex Massage",
   description:
-    "Massage bien-être à domicile à Toulouse : californien, ayurvédique et sportif, en solo ou en duo.",
+    "Spécialiste du massage musculaire à domicile à Toulouse : diagnostic, massage sur mesure, récupération et bien-être — californien, ayurvédique et sportif, en solo ou en duo.",
   url: `${SITE_URL}/`,
   telephone: "+33771838010",
   email: "contact@alexmassage.fr",
@@ -85,6 +85,18 @@ export const businessLd = {
       priceSpecification: {
         "@type": "UnitPriceSpecification",
         minPrice: 50,
+        priceCurrency: "EUR",
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Abonnement massage à domicile à Toulouse — carnet de 3 séances (−15 %)",
+      },
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        minPrice: 127.5,
         priceCurrency: "EUR",
       },
     },

@@ -154,6 +154,8 @@ export default function MassageAbhyanga() {
                 Chaque séance est une expérience holistique : lissages,
                 étirements doux et percussions rythmées stimulent la
                 circulation des énergies et aident à débloquer ce qui stagne.
+                C&apos;est le volet énergie de ma pratique : reprendre soin de
+                soi et recharger ses batteries, dans la durée.
               </p>
               <p className="mt-[18px] mb-0 text-taupe text-[17px] leading-[1.8]">
                 Les huiles sont choisies selon votre constitution (dosha) et

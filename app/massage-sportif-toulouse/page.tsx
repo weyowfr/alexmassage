@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import BookingForm from "@/components/BookingForm";
 import JsonLd from "@/components/JsonLd";
 import PageHero from "@/components/PageHero";
@@ -9,6 +10,7 @@ import SiteHeader from "@/components/SiteHeader";
 import BenefitCard from "@/components/massage/BenefitCard";
 import Credentials from "@/components/massage/Credentials";
 import Gallery from "@/components/massage/Gallery";
+import MethodeSection from "@/components/massage/MethodeSection";
 import IdealAside from "@/components/massage/IdealAside";
 import OtherMassages from "@/components/massage/OtherMassages";
 import PrepareSection from "@/components/massage/PrepareSection";
@@ -143,6 +145,8 @@ export default function MassageSportif() {
         />
 
         <Credentials />
+
+        <MethodeSection bg="bg-sand" />
 
         <section
           aria-labelledby="h-sued-intro"
@@ -341,6 +345,19 @@ export default function MassageSportif() {
             >
               Prendre rendez‑vous
             </a>
+            <p
+              data-reveal="230"
+              className="mt-6 mb-0 text-taupe text-[15.5px] leading-[1.7]"
+            >
+              La récupération est une affaire de régularité : avec{" "}
+              <Link
+                href="/tarifs-massage-toulouse"
+                className="text-forest font-semibold border-b border-[rgba(192,135,60,.5)] hover:text-bronze"
+              >
+                l&apos;abonnement −15 % dès 3 séances
+              </Link>
+              , intégrez le massage à votre routine sportive.
+            </p>
             <TimeGuarantee center withSetup reveal={260} />
           </div>
         </section>

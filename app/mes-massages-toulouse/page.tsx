@@ -8,6 +8,7 @@ import RdvBand from "@/components/RdvBand";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import Credentials from "@/components/massage/Credentials";
+import MethodeSection from "@/components/massage/MethodeSection";
 
 export const metadata: Metadata = {
   title: "Mes massages à domicile à Toulouse | Alex Massage",
@@ -192,6 +193,8 @@ export default function MesMassages() {
 
         <Credentials />
 
+        <MethodeSection bg="bg-sand" />
+
         {/* Intro pilier */}
         <section
           aria-labelledby="h-pilier-intro"
@@ -209,9 +212,11 @@ export default function MesMassages() {
             </h2>
             <p className="mt-6 mb-0 text-taupe text-[17.5px] leading-[1.8]">
               Relaxant, énergétique ou sportif : chaque protocole répond à une
-              intention différente. Je me déplace chez vous, à Toulouse et dans
-              un rayon de 30 km, avec ma table, mes huiles et ma musique — pour
-              une séance entièrement personnalisée, en solo ou en duo.
+              intention différente, mais tous partent du même principe — lire le
+              corps, relâcher les tensions musculaires, vous remettre en énergie.
+              Je me déplace chez vous, à Toulouse et dans un rayon de 30 km, avec
+              ma table, mes huiles et ma musique — pour une séance entièrement
+              personnalisée, en solo ou en duo.
             </p>
           </div>
         </section>

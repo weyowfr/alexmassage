@@ -167,7 +167,9 @@ export default function MassageCalifornien() {
                 avec une pression douce à modérée. Chaque geste est pensé pour
                 détendre les muscles et apaiser l&apos;esprit — la lumière
                 tamisée et la musique feutrée installent, dès les premières
-                minutes, un état de calme profond.
+                minutes, un état de calme profond. C&apos;est le volet le plus
+                doux de ma pratique : s&apos;autoriser à lâcher prise et
+                s&apos;occuper de soi, tout simplement.
               </p>
               <p className="mt-[18px] mb-0 text-taupe text-[17px] leading-[1.8]">
                 Le{" "}

@@ -1,23 +1,25 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import BesoinsReels from "@/components/BesoinsReels";
 import JsonLd from "@/components/JsonLd";
 import RdvBand from "@/components/RdvBand";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import MethodeSection from "@/components/massage/MethodeSection";
 import { businessLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Massage à domicile Toulouse — Alex Massage bien‑être",
+  title: "Massage musculaire à domicile Toulouse — Alex Massage",
   description:
-    "Massage bien‑être à domicile à Toulouse : relaxant, ayurvédique ou sportif, en solo ou duo, dès 30 €. Alexandre se déplace chez vous — réservez !",
+    "Spécialiste du massage musculaire à domicile à Toulouse : diagnostic, massage sur mesure, récupération et bien-être. Solo ou duo, dès 30 €. Réservez !",
   alternates: { canonical: "https://www.alexmassage.fr/" },
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    title: "Massage à domicile Toulouse — Alex Massage",
+    title: "Massage musculaire à domicile Toulouse — Alex Massage",
     description:
-      "Massage bien‑être à domicile à Toulouse, en solo ou en duo, dès 30 €. Le rituel qui vient à vous.",
+      "Spécialiste du massage musculaire à domicile à Toulouse, en solo ou en duo, dès 30 €. Le bien-être qui vient à vous.",
     url: "https://www.alexmassage.fr/",
     images: ["/og-image.jpg"],
   },
@@ -129,18 +131,18 @@ export default function Home() {
 
           <div className="relative w-full max-w-[1120px] mx-auto pt-[120px] pb-24 px-[clamp(20px,5vw,64px)]">
             <p className="text-[13px] tracking-[.28em] uppercase font-semibold text-goldlight m-0 mb-[26px] animate-[fadeIn_1.1s_ease_.1s_both]">
-              À domicile · Solo &amp; Duo · Entreprise
+              Spécialiste du massage musculaire · À domicile · Toulouse
             </p>
             <h1 className="font-serif font-normal text-[clamp(42px,7.4vw,92px)] leading-[1.02] tracking-[-.015em] text-linen m-0 max-w-[16ch] text-balance animate-[riseIn_1.2s_cubic-bezier(.22,.61,.36,1)_.2s_both]">
-              Le massage bien‑être{" "}
+              Le massage musculaire{" "}
               <span className="italic text-goldlight">qui vient à vous</span>,
               à Toulouse.
             </h1>
             <p className="max-w-[52ch] text-[rgba(244,239,231,.84)] text-[clamp(16px,1.5vw,19px)] leading-[1.75] mt-[30px] mb-0 animate-[riseIn_1.2s_cubic-bezier(.22,.61,.36,1)_.45s_both]">
-              Californien, ayurvédique ou sportif — Alexandre se déplace chez
+              Diagnostic des tensions, massage structuré sur mesure,
+              récupération et regain d&apos;énergie — Alexandre se déplace chez
               vous, dans un rayon de 30 km autour de Toulouse, avec sa table,
-              ses huiles et sa musique. Vous n&apos;avez plus qu&apos;à
-              respirer.
+              ses huiles et sa musique. Vous n&apos;avez plus qu&apos;à respirer.
             </p>
             <div className="flex flex-wrap gap-4 mt-[38px] animate-[riseIn_1.2s_cubic-bezier(.22,.61,.36,1)_.65s_both]">
               <Link
@@ -175,6 +177,9 @@ export default function Home() {
             />
           </div>
         </section>
+
+        {/* ░░ MA MÉTHODE ░░ */}
+        <MethodeSection bg="bg-sand" />
 
         {/* ░░ MES MASSAGES ░░ */}
         <section
@@ -431,6 +436,40 @@ export default function Home() {
                 </blockquote>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* ░░ BESOINS RÉELS ░░ */}
+        <BesoinsReels bg="bg-linen" />
+
+        {/* ░░ ABONNEMENT ░░ */}
+        <section
+          aria-label="Abonnement massage"
+          className="bg-forest py-[clamp(48px,6vw,80px)] px-[clamp(20px,5vw,64px)]"
+        >
+          <div
+            data-reveal
+            className="max-w-[1120px] mx-auto flex flex-wrap items-center justify-between gap-8"
+          >
+            <div className="max-w-[46ch]">
+              <p className="text-[13px] tracking-[.24em] uppercase font-semibold text-goldlight m-0 mb-3">
+                Nouveau · Abonnement
+              </p>
+              <h2 className="font-serif font-normal text-[clamp(26px,3.4vw,40px)] leading-[1.12] text-linen m-0 mb-3">
+                Massez-vous régulièrement, économisez 15 %
+              </h2>
+              <p className="m-0 text-[rgba(244,239,231,.84)] text-[16px] leading-[1.7]">
+                La régularité fait la différence. Dès 3 séances achetées,
+                bénéficiez de −15 % — soit 3 séances d&apos;une heure à 153 € au
+                lieu de 180 €. Le massage, acteur de votre routine bien-être.
+              </p>
+            </div>
+            <Link
+              href="/tarifs-massage-toulouse"
+              className="inline-flex items-center bg-gold text-night font-bold text-[13.5px] tracking-[.06em] uppercase px-8 py-4 rounded-[2px] transition-[background-color,transform] duration-[400ms] hover:bg-goldlight hover:-translate-y-[2px] hover:text-night"
+            >
+              Voir l&apos;abonnement
+            </Link>
           </div>
         </section>
 

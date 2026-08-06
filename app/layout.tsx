@@ -18,9 +18,9 @@ const spectral = Spectral({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.alexmassage.fr"),
-  title: "Massage à domicile Toulouse — Alex Massage bien‑être",
+  title: "Massage musculaire à domicile Toulouse — Alex Massage",
   description:
-    "Massage bien‑être à domicile à Toulouse : relaxant, ayurvédique ou sportif, en solo ou duo, dès 30 €. Alexandre se déplace chez vous — réservez !",
+    "Spécialiste du massage musculaire à domicile à Toulouse : diagnostic, massage sur mesure, récupération et bien-être. Solo ou duo, dès 30 €. Réservez !",
   openGraph: {
     type: "website",
     locale: "fr_FR",
