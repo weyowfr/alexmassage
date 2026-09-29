@@ -51,7 +51,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${hanken.variable} ${spectral.variable}`}
     >
-      <body>
+      <body className="overflow-x-hidden">
         {/* Amorce le scroll-reveal avant le premier rendu visible,
             comme le site.js d'origine chargé dans <head>. */}
         <script

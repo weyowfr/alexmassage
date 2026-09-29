@@ -122,7 +122,7 @@ export default function Home() {
           />
           <div
             aria-hidden="true"
-            className="absolute -right-[60px] top-[26%] grid place-items-center pointer-events-none opacity-90"
+            className="absolute -right-[60px] top-[26%] hidden sm:grid place-items-center pointer-events-none opacity-90"
           >
             <div className="w-[420px] h-[420px] border border-[rgba(216,165,90,.22)] rounded-full animate-[breathe_12s_cubic-bezier(.37,0,.63,1)_infinite]" />
             <div className="absolute w-[280px] h-[280px] border border-[rgba(216,165,90,.3)] rounded-full animate-[breathe_12s_cubic-bezier(.37,0,.63,1)_infinite] [animation-delay:-1.6s]" />
@@ -133,12 +133,12 @@ export default function Home() {
             <p className="text-[13px] tracking-[.28em] uppercase font-semibold text-goldlight m-0 mb-[26px] animate-[fadeIn_1.1s_ease_.1s_both]">
               Massage du dos &amp; des épaules · À domicile · Toulouse
             </p>
-            <h1 className="font-serif font-normal text-[clamp(42px,7.4vw,92px)] leading-[1.02] tracking-[-.015em] text-linen m-0 max-w-[16ch] text-balance animate-[riseIn_1.2s_cubic-bezier(.22,.61,.36,1)_.2s_both]">
+            <h1 className="font-serif font-normal text-[clamp(34px,5.2vw,68px)] leading-[1.06] tracking-[-.015em] text-linen m-0 max-w-[20ch] text-balance animate-[riseIn_1.2s_cubic-bezier(.22,.61,.36,1)_.2s_both]">
               Dos noué, épaules tendues&nbsp;? Le massage sur mesure{" "}
               <span className="italic text-goldlight">qui vient à vous</span>,
               à Toulouse.
             </h1>
-            <p className="max-w-[52ch] text-[rgba(244,239,231,.84)] text-[clamp(16px,1.5vw,19px)] leading-[1.75] mt-[30px] mb-0 animate-[riseIn_1.2s_cubic-bezier(.22,.61,.36,1)_.45s_both]">
+            <p className="max-w-full sm:max-w-[52ch] text-[rgba(244,239,231,.84)] text-[clamp(16px,1.5vw,19px)] leading-[1.75] mt-[30px] mb-0 animate-[riseIn_1.2s_cubic-bezier(.22,.61,.36,1)_.45s_both]">
               Dos, nuque, épaules, lombaires, jambes — un massage sur tout le
               corps, adapté aux zones qui vous gênent. Diagnostic des tensions,
               massage structuré, récupération et regain d&apos;énergie :
