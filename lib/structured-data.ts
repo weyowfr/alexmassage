@@ -9,7 +9,7 @@ export const businessLd = {
   "@id": BUSINESS_ID,
   name: "Alex Massage",
   description:
-    "Spécialiste du massage musculaire à domicile à Toulouse : diagnostic, massage sur mesure, récupération et bien-être — californien, ayurvédique et sportif, en solo ou en duo.",
+    "Massage du dos et des épaules à domicile à Toulouse : diagnostic des tensions, massage musculaire sur mesure, récupération et bien-être — californien, ayurvédique et sportif, en solo ou en duo.",
   url: `${SITE_URL}/`,
   telephone: "+33771838010",
   email: "contact@alexmassage.fr",

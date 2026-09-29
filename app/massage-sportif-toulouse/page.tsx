@@ -21,7 +21,7 @@ import { businessRef } from "@/lib/structured-data";
 export const metadata: Metadata = {
   title: "Massage sportif à domicile Toulouse | Alex Massage",
   description:
-    "Massage sportif (deep tissue) à domicile à Toulouse : pétrissage profond, récupération, préparation à l'effort. Dès 50 €. Réservez.",
+    "Massage sportif / deep tissue à domicile à Toulouse : pétrissage profond pour dénouer un dos noué, des épaules tendues et les tensions du quotidien. Dès 50 €. Réservez.",
   alternates: {
     canonical: "https://www.alexmassage.fr/massage-sportif-toulouse",
   },

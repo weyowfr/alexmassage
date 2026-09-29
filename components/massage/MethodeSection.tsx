@@ -46,22 +46,23 @@ export default function MethodeSection({
             data-reveal
             className="text-[13px] tracking-[.24em] uppercase font-semibold text-bronze m-0 mb-4"
           >
-            Ma méthode
+            Ma méthode · Spécialiste du massage musculaire
           </p>
           <h2
             id="h-methode"
             data-reveal="80"
             className="font-serif font-normal text-[clamp(28px,4vw,50px)] leading-[1.1] tracking-[-.01em] text-ink m-0"
           >
-            Spécialiste du massage musculaire
+            Massage du dos, des épaules et des tensions
           </h2>
           <p
             data-reveal="150"
             className="mt-[22px] mb-0 text-taupe text-[17px] leading-[1.8]"
           >
-            Chaque séance suit une démarche précise : lire le corps, construire
-            un massage sur mesure et l&apos;intégrer à votre équilibre — bien-être,
-            récupération, regain d&apos;énergie.
+            Dos noué, nuque raide, épaules contractées : chaque séance suit une
+            démarche précise — lire le corps, construire un massage sur mesure
+            et l&apos;intégrer à votre équilibre : bien-être, récupération,
+            regain d&apos;énergie.
           </p>
         </div>
 

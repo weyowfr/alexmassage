@@ -18,9 +18,9 @@ const spectral = Spectral({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.alexmassage.fr"),
-  title: "Massage musculaire à domicile Toulouse — Alex Massage",
+  title: "Massage du dos & des épaules à domicile à Toulouse — Alex Massage",
   description:
-    "Spécialiste du massage musculaire à domicile à Toulouse : diagnostic, massage sur mesure, récupération et bien-être. Solo ou duo, dès 30 €. Réservez !",
+    "Dos noué, épaules tendues, tensions musculaires ? Massage sur mesure à domicile à Toulouse : diagnostic, récupération et bien-être. Solo ou duo, dès 30 €. Réservez !",
   openGraph: {
     type: "website",
     locale: "fr_FR",

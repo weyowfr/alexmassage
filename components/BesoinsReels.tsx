@@ -54,8 +54,9 @@ export default function BesoinsReels({
             data-reveal="150"
             className="mt-[22px] mb-0 text-taupe text-[17px] leading-[1.8]"
           >
-            Derrière chaque réservation, un besoin réel : souffler, se retrouver,
-            reprendre soin de soi. Un massage répond d&apos;abord à ça.
+            Derrière chaque réservation, un besoin réel : dénouer un dos ou des
+            épaules, souffler, se retrouver, reprendre soin de soi. Un massage
+            répond d&apos;abord à ça.
           </p>
         </div>
 

@@ -10,16 +10,16 @@ import MethodeSection from "@/components/massage/MethodeSection";
 import { businessLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Massage musculaire à domicile Toulouse — Alex Massage",
+  title: "Massage du dos & des épaules à domicile à Toulouse — Alex Massage",
   description:
-    "Spécialiste du massage musculaire à domicile à Toulouse : diagnostic, massage sur mesure, récupération et bien-être. Solo ou duo, dès 30 €. Réservez !",
+    "Dos noué, épaules tendues, tensions musculaires ? Massage sur mesure à domicile à Toulouse : dos, nuque, lombaires, jambes. Solo ou duo, dès 30 €. Réservez !",
   alternates: { canonical: "https://www.alexmassage.fr/" },
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    title: "Massage musculaire à domicile Toulouse — Alex Massage",
+    title: "Massage du dos & des épaules à domicile à Toulouse — Alex Massage",
     description:
-      "Spécialiste du massage musculaire à domicile à Toulouse, en solo ou en duo, dès 30 €. Le bien-être qui vient à vous.",
+      "Dos noué, épaules tendues ? Massage musculaire sur mesure à domicile à Toulouse, en solo ou en duo, dès 30 €. Le soin qui vient à vous.",
     url: "https://www.alexmassage.fr/",
     images: ["/og-image.jpg"],
   },
@@ -56,9 +56,9 @@ const MASSAGE_CARDS = [
     href: "/massage-sportif-toulouse",
     img: "/images/massage-sportif.webp",
     alt: "Massage sportif, pétrissage profond des épaules",
-    tags: "Tensions · Récupération · Performance",
+    tags: "Dos & épaules · Tensions · Récupération",
     title: "Suédois / Sportif",
-    text: "Pétrissage profond et pressions ciblées pour dénouer les tensions et accélérer la récupération.",
+    text: "Pétrissage profond et pressions ciblées pour dénouer un dos noué, des épaules tendues et les tensions accumulées.",
     delay: "240",
   },
 ];
@@ -131,18 +131,20 @@ export default function Home() {
 
           <div className="relative w-full max-w-[1120px] mx-auto pt-[120px] pb-24 px-[clamp(20px,5vw,64px)]">
             <p className="text-[13px] tracking-[.28em] uppercase font-semibold text-goldlight m-0 mb-[26px] animate-[fadeIn_1.1s_ease_.1s_both]">
-              Spécialiste du massage musculaire · À domicile · Toulouse
+              Massage du dos &amp; des épaules · À domicile · Toulouse
             </p>
             <h1 className="font-serif font-normal text-[clamp(42px,7.4vw,92px)] leading-[1.02] tracking-[-.015em] text-linen m-0 max-w-[16ch] text-balance animate-[riseIn_1.2s_cubic-bezier(.22,.61,.36,1)_.2s_both]">
-              Le massage musculaire{" "}
+              Dos noué, épaules tendues&nbsp;? Le massage sur mesure{" "}
               <span className="italic text-goldlight">qui vient à vous</span>,
               à Toulouse.
             </h1>
             <p className="max-w-[52ch] text-[rgba(244,239,231,.84)] text-[clamp(16px,1.5vw,19px)] leading-[1.75] mt-[30px] mb-0 animate-[riseIn_1.2s_cubic-bezier(.22,.61,.36,1)_.45s_both]">
-              Diagnostic des tensions, massage structuré sur mesure,
-              récupération et regain d&apos;énergie — Alexandre se déplace chez
-              vous, dans un rayon de 30 km autour de Toulouse, avec sa table,
-              ses huiles et sa musique. Vous n&apos;avez plus qu&apos;à respirer.
+              Dos, nuque, épaules, lombaires, jambes — un massage sur tout le
+              corps, adapté aux zones qui vous gênent. Diagnostic des tensions,
+              massage structuré, récupération et regain d&apos;énergie :
+              Alexandre se déplace chez vous, dans un rayon de 30 km autour de
+              Toulouse, avec sa table, ses huiles et sa musique. Vous
+              n&apos;avez plus qu&apos;à respirer.
             </p>
             <div className="flex flex-wrap gap-4 mt-[38px] animate-[riseIn_1.2s_cubic-bezier(.22,.61,.36,1)_.65s_both]">
               <Link
@@ -181,10 +183,13 @@ export default function Home() {
         {/* ░░ MA MÉTHODE ░░ */}
         <MethodeSection bg="bg-sand" />
 
+        {/* ░░ BESOINS RÉELS ░░ */}
+        <BesoinsReels bg="bg-linen" />
+
         {/* ░░ MES MASSAGES ░░ */}
         <section
           aria-labelledby="h-massages"
-          className="bg-linen py-[clamp(64px,9vw,128px)] px-[clamp(20px,5vw,64px)]"
+          className="bg-sand py-[clamp(64px,9vw,128px)] px-[clamp(20px,5vw,64px)]"
         >
           <div className="max-w-[1200px] mx-auto">
             <div className="max-w-[640px] mb-[clamp(40px,5vw,68px)]">
@@ -254,7 +259,7 @@ export default function Home() {
         {/* ░░ ALEXANDRE ░░ */}
         <section
           aria-labelledby="h-alex"
-          className="bg-sand py-[clamp(64px,9vw,128px)] px-[clamp(20px,5vw,64px)]"
+          className="bg-linen py-[clamp(64px,9vw,128px)] px-[clamp(20px,5vw,64px)]"
         >
           <div className="max-w-[1200px] mx-auto flex flex-wrap gap-[clamp(40px,6vw,88px)] items-center">
             <div className="flex-[1_1_380px] min-w-[300px]" data-reveal>
@@ -309,7 +314,7 @@ export default function Home() {
         {/* ░░ TEASERS ENTREPRISE + CARTES ░░ */}
         <section
           aria-label="Entreprise et cartes cadeaux"
-          className="bg-linen py-[clamp(64px,9vw,128px)] px-[clamp(20px,5vw,64px)]"
+          className="bg-sand py-[clamp(64px,9vw,128px)] px-[clamp(20px,5vw,64px)]"
         >
           <div className="max-w-[1200px] mx-auto grid grid-cols-[repeat(auto-fit,minmax(min(340px,100%),1fr))] gap-[clamp(20px,2.4vw,30px)]">
             <div
@@ -397,7 +402,7 @@ export default function Home() {
         {/* ░░ TÉMOIGNAGES ░░ */}
         <section
           aria-labelledby="h-avis"
-          className="bg-sand py-[clamp(64px,9vw,128px)] px-[clamp(20px,5vw,64px)]"
+          className="bg-linen py-[clamp(64px,9vw,128px)] px-[clamp(20px,5vw,64px)]"
         >
           <div className="max-w-[1120px] mx-auto text-center">
             <div
@@ -438,9 +443,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        {/* ░░ BESOINS RÉELS ░░ */}
-        <BesoinsReels bg="bg-linen" />
 
         {/* ░░ ABONNEMENT ░░ */}
         <section
