@@ -10,6 +10,7 @@ type BookingFormProps = {
   preset?: string;
   heading?: string;
   sub?: string;
+  occasion?: string;
 };
 
 const COPY: Record<
@@ -120,6 +121,7 @@ export default function BookingForm({
   preset,
   heading,
   sub,
+  occasion,
 }: BookingFormProps) {
   const [state, formAction, pending] = useActionState<BookingState, FormData>(
     sendBooking,
@@ -302,12 +304,16 @@ export default function BookingForm({
                       <span className={labelClass}>Montant</span>
                       <select
                         name="montant"
-                        defaultValue="50 €"
+                        defaultValue={preset || "50 €"}
                         className={inputClass}
                       >
-                        <option value="30 €">30 €</option>
-                        <option value="50 €">50 €</option>
-                        <option value="60 €">60 €</option>
+                        <option value="30 €">30 € · solo 30 min</option>
+                        <option value="50 €">50 € · solo 45 min</option>
+                        <option value="60 €">60 € · solo 1 h</option>
+                        <option value="85 €">85 € · solo 1 h 30</option>
+                        <option value="100 € (duo)">100 € · duo 45 min</option>
+                        <option value="120 € (duo)">120 € · duo 1 h</option>
+                        <option value="170 € (duo)">170 € · duo 1 h 30</option>
                         <option value="Montant libre">Montant libre</option>
                       </select>
                     </label>
@@ -315,7 +321,7 @@ export default function BookingForm({
                       <span className={labelClass}>Occasion</span>
                       <select
                         name="occasion"
-                        defaultValue="Anniversaire"
+                        defaultValue={occasion || "Anniversaire"}
                         className={inputClass}
                       >
                         <option value="Noël">Noël</option>

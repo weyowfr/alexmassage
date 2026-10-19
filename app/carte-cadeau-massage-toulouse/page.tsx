@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import BookingForm from "@/components/BookingForm";
 import JsonLd from "@/components/JsonLd";
 import PageHero from "@/components/PageHero";
@@ -192,6 +193,19 @@ export default function CarteCadeau() {
           image="/images/espace-detente.jpeg"
           imageAlt="Ambiance douce et chaleureuse pour offrir un massage"
         />
+
+        {/* Encart saisonnier — à retirer après Noël */}
+        <div className="bg-forest px-[clamp(20px,5vw,64px)] py-4">
+          <p className="max-w-[1120px] mx-auto m-0 text-center text-[14.5px] leading-[1.6] text-[rgba(244,239,231,.86)]">
+            Vous cherchez un cadeau de Noël ?{" "}
+            <Link
+              href="/carte-cadeau-noel-massage-toulouse"
+              className="text-goldlight font-semibold underline underline-offset-4 hover:text-linen"
+            >
+              Voir les cartes de Noël et les dates limites de commande
+            </Link>
+          </p>
+        </div>
 
         {/* Intro + carte visuelle */}
         <section

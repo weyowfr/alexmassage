@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/massage-duo-toulouse", priority: 0.9 },
     { path: "/tarifs-massage-toulouse", priority: 0.9 },
     { path: "/carte-cadeau-massage-toulouse", priority: 0.8 },
+    { path: "/carte-cadeau-noel-massage-toulouse", priority: 0.8 },
     { path: "/massage-entreprise-toulouse", priority: 0.8 },
     { path: "/contact", priority: 0.8 },
     { path: "/mon-histoire", priority: 0.6 },

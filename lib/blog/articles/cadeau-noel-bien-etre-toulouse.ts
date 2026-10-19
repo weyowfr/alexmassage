@@ -43,6 +43,10 @@ const article: Article = {
       t: "p",
       x: "Une carte, c'est plat sous un sapin. Deux astuces de mise en scène : l'emballer dans une boîte avec une petite huile de massage ou une bougie — le paquet a du volume, la surprise reste entière — ou la glisser dans un plaid moelleux, qui servira le soir de la séance. Effet garanti au déballage, et cohérent avec le [rituel bien-être](/blog/rituel-bien-etre-maison) que ce cadeau inaugure.",
     },
+    {
+      t: "p",
+      x: "Toutes les formules à offrir, avec les dates limites de commande, sont réunies sur la page [carte cadeau de Noël](/carte-cadeau-noel-massage-toulouse).",
+    },
     { t: "h2", x: "Le scénario du 23 décembre au soir" },
     {
       t: "p",
