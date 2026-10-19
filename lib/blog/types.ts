@@ -4,6 +4,7 @@
    [libellé](/chemin) pour les liens et **gras** pour l'emphase. */
 
 export type CategoryId =
+  | "dos-tensions"
   | "domicile"
   | "techniques"
   | "bienfaits"

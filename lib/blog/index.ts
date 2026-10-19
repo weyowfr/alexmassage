@@ -47,7 +47,25 @@ import a38 from "./articles/comment-se-preparer-a-un-massage";
 import a39 from "./articles/que-faire-apres-un-massage";
 import a40 from "./articles/rituel-bien-etre-maison";
 
+/* Cluster « dos, épaules & tensions » */
+import a41 from "./articles/massage-dos-et-epaules-toulouse";
+import a42 from "./articles/dos-noue-que-faire";
+import a43 from "./articles/epaules-tendues-trapezes";
+import a44 from "./articles/nuque-raide-tensions-cervicales";
+import a45 from "./articles/tensions-lombaires-bas-du-dos";
+import a46 from "./articles/diagnostic-des-tensions-musculaires";
+import a47 from "./articles/massage-sur-mesure-ou-protocole-standard";
+import a48 from "./articles/massage-corps-entier-ou-zone-ciblee";
+import a49 from "./articles/lacher-prise-massage-besoins-reels";
+import a50 from "./articles/massage-routine-bien-etre-abonnement";
+
 export const CATEGORIES: Category[] = [
+  {
+    id: "dos-tensions",
+    label: "Dos, épaules & tensions",
+    tagline:
+      "Dos noué, épaules tendues, nuque raide : comprendre vos tensions et le massage sur mesure qui les dénoue.",
+  },
   {
     id: "domicile",
     label: "Massage à domicile",
@@ -93,6 +111,7 @@ export const ARTICLES: Article[] = [
   a25, a26, a27, a28, a29,
   a30, a31, a32, a33, a34, a35,
   a36, a37, a38, a39, a40,
+  a41, a42, a43, a44, a45, a46, a47, a48, a49, a50,
 ];
 
 const BY_SLUG = new Map(ARTICLES.map((a) => [a.slug, a]));
