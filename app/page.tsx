@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import BesoinsReels from "@/components/BesoinsReels";
 import JsonLd from "@/components/JsonLd";
+import QuizMassage from "@/components/QuizMassage";
 import RdvBand from "@/components/RdvBand";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
@@ -153,12 +154,12 @@ export default function Home() {
               >
                 Prendre rendez‑vous
               </Link>
-              <Link
-                href="/mes-massages-toulouse"
+              <a
+                href="#trouver-mon-massage"
                 className="inline-flex items-center text-linen border border-[rgba(244,239,231,.45)] font-semibold text-[14px] tracking-[.06em] uppercase px-[34px] py-[17px] rounded-[2px] transition-[background-color,border-color] duration-[350ms] hover:bg-[rgba(244,239,231,.1)] hover:border-linen hover:text-linen"
               >
-                Découvrir mes massages
-              </Link>
+                Trouver mon massage
+              </a>
             </div>
           </div>
 
@@ -179,6 +180,9 @@ export default function Home() {
             />
           </div>
         </section>
+
+        {/* ░░ QUESTIONNAIRE ░░ */}
+        <QuizMassage />
 
         {/* ░░ MA MÉTHODE ░░ */}
         <MethodeSection bg="bg-sand" />
