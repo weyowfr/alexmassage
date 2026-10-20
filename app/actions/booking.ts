@@ -1,6 +1,7 @@
 "use server";
 
-import nodemailer from "nodemailer";
+import { decisionUrl, newOrderId, signOrder, type GiftOrder } from "@/lib/gift-card";
+import { escapeHtml, FROM, getTransport, isEmail, TO_EMAILS } from "@/lib/mailer";
 
 export type BookingState = {
   ok: boolean;
@@ -28,6 +29,8 @@ const LABELS: [string, string][] = [
   ["occasion", "Occasion"],
   ["livraison", "Livraison"],
   ["beneficiaire", "Bénéficiaire"],
+  ["envoi", "Carte envoyée à"],
+  ["emailBeneficiaire", "Email du bénéficiaire"],
   ["societe", "Société"],
   ["effectif", "Effectif"],
   ["evenement", "Événement"],
@@ -35,31 +38,26 @@ const LABELS: [string, string][] = [
   ["message", "Message"],
 ];
 
-/* SMTP de la boîte contact@alexmassage.fr (OVH par défaut).
-   Seul SMTP_PASSWORD est indispensable dans .env.local. */
-const SMTP_HOST = process.env.SMTP_HOST ?? "ssl0.ovh.net";
-const SMTP_PORT = Number(process.env.SMTP_PORT ?? 465);
-const SMTP_USER = process.env.SMTP_USER ?? "contact@alexmassage.fr";
-const TO_EMAILS = (
-  process.env.BOOKING_TO_EMAILS ??
-  "contact@alexmassage.fr,alexandre.roux31@gmail.com,alexmassage31@gmail.com,allwinstake@gmail.com"
-)
-  .split(",")
-  .map((address) => address.trim())
-  .filter(Boolean);
-
 const FALLBACK_ERROR =
   "L'envoi n'a pas abouti. Réessayez, ou appelez-moi directement au 07 71 83 80 10.";
 
-function escapeHtml(value: string): string {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
+/* Boutons Accepter / Refuser du mail de commande de carte cadeau. */
+function decisionHtml(url: string): string {
+  const btn = (label: string, href: string, bg: string, fg: string) =>
+    `<a href="${href}" style="display:inline-block;background:${bg};color:${fg};text-decoration:none;font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:13px;letter-spacing:1px;text-transform:uppercase;padding:13px 24px;border-radius:3px;margin:0 6px 8px 0;border:1px solid #2c4034;">${label}</a>`;
+  return `
+      <tr>
+        <td style="padding:4px 24px 24px;">
+          <p style="margin:0 0 12px;color:#3d362e;font-size:14px;font-family:Arial,Helvetica,sans-serif;">
+            Une fois le paiement reçu, acceptez pour envoyer la carte cadeau automatiquement.
+          </p>
+          ${btn("✓ Accepter et envoyer la carte", `${url}&amp;d=accepter`, "#2c4034", "#f4efe7")}
+          ${btn("✕ Refuser", `${url}&amp;d=refuser`, "#ffffff", "#8a3b2a")}
+        </td>
+      </tr>`;
 }
 
-function buildHtml(subject: string, rows: [string, string][]): string {
+function buildHtml(subject: string, rows: [string, string][], decisionLink?: string): string {
   const tableRows = rows
     .map(
       ([label, value], i) => `
@@ -94,7 +92,7 @@ function buildHtml(subject: string, rows: [string, string][]): string {
             Répondre à ce message écrit directement au client.
           </p>
         </td>
-      </tr>
+      </tr>${decisionLink ? decisionHtml(escapeHtml(decisionLink)) : ""}
     </table>
   </body>
 </html>`;
@@ -127,28 +125,54 @@ export async function sendBooking(
     if (value) rows.push([label, value.slice(0, 2000)]);
   }
 
-  const password = process.env.SMTP_PASSWORD;
-  if (!password) {
+  const transporter = getTransport();
+  if (!transporter) {
     console.error("sendBooking: SMTP_PASSWORD manquant — demande perdue :", rows);
     return { ok: false, error: FALLBACK_ERROR };
   }
 
   const email = String(formData.get("email") ?? "").trim();
 
-  try {
-    const transporter = nodemailer.createTransport({
-      host: SMTP_HOST,
-      port: SMTP_PORT,
-      secure: SMTP_PORT === 465,
-      auth: { user: SMTP_USER, pass: password },
-    });
+  /* Carte cadeau : lien signé pour qu'Alex accepte ou refuse depuis le mail. */
+  let decisionLink: string | undefined;
+  if (variant === "cadeau") {
+    const field = (name: string, max: number) =>
+      String(formData.get(name) ?? "").trim().slice(0, max);
+    const envoi = field("envoi", 40) === "beneficiaire" ? "beneficiaire" : "acheteur";
+    const emailBeneficiaire = field("emailBeneficiaire", 200);
+    if (envoi === "beneficiaire" ? !isEmail(emailBeneficiaire) : !isEmail(email)) {
+      return {
+        ok: false,
+        error:
+          envoi === "beneficiaire"
+            ? "Indiquez l'email du bénéficiaire pour qu'il reçoive la carte."
+            : "Indiquez votre email pour recevoir la carte cadeau.",
+      };
+    }
+    const order: GiftOrder = {
+      id: newOrderId(),
+      nom,
+      tel,
+      email,
+      montant: field("montant", 40),
+      occasion: field("occasion", 60),
+      livraison: field("livraison", 60),
+      beneficiaire: field("beneficiaire", 80),
+      envoi,
+      emailBeneficiaire,
+      message: field("message", 600),
+      iat: Date.now(),
+    };
+    decisionLink = decisionUrl(signOrder(order));
+  }
 
+  try {
     await transporter.sendMail({
-      from: `"Alex Massage" <${SMTP_USER}>`,
+      from: FROM,
       to: TO_EMAILS,
       subject: `${subject} — ${nom}`,
-      text: `${rows.map(([label, value]) => `${label} : ${value}`).join("\n")}\n\n— Envoyé depuis le formulaire alexmassage.fr`,
-      html: buildHtml(subject, rows),
+      text: `${rows.map(([label, value]) => `${label} : ${value}`).join("\n")}${decisionLink ? `\n\nAccepter ou refuser la carte cadeau : ${decisionLink}` : ""}\n\n— Envoyé depuis le formulaire alexmassage.fr`,
+      html: buildHtml(subject, rows, decisionLink),
       ...(email ? { replyTo: email } : {}),
     });
   } catch (err) {

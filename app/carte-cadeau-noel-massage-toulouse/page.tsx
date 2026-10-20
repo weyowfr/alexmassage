@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: "Offrez un massage à domicile pour Noël — Alex Massage Toulouse",
     description:
       "Carte cadeau massage à domicile à Toulouse : dès 30 €, solo ou duo, valable 1 an.",
-    images: ["/og-image.jpg"],
+    images: ["/images/noel/carte-cadeau-enveloppe-doree.jpg"],
   },
 };
 
@@ -48,7 +48,7 @@ const productLd = {
   name: "Carte cadeau Noël — massage à domicile à Toulouse",
   description:
     "Carte cadeau de Noël pour un massage bien-être à domicile à Toulouse et 30 km alentour : solo ou duo, valable 1 an, envoyée par email sous 24 h ouvrées ou remise en carte papier.",
-  image: `${SITE_URL}/images/table-massage-serviettes.jpeg`,
+  image: `${SITE_URL}/images/noel/carte-cadeau-enveloppe-doree.jpg`,
   brand: { "@type": "Brand", name: "Alex Massage" },
   offers: {
     "@type": "AggregateOffer",
@@ -132,7 +132,7 @@ const ETAPES = [
   {
     n: "2",
     t: "Vous recevez la carte",
-    a: "Par email sous 24 h ouvrées, prête à imprimer ou à transférer, ou en carte papier remise en main propre.",
+    a: "Par email sous 24 h ouvrées, à vous ou directement à la personne gâtée, prête à imprimer ou à transférer. Ou en carte papier remise en main propre.",
   },
   {
     n: "3",
@@ -236,8 +236,8 @@ export default function CarteCadeauNoel() {
         <section className="relative overflow-hidden bg-night min-h-[clamp(560px,82vh,760px)] flex items-center">
           <div className="absolute inset-0">
             <Image
-              src="/images/table-massage-serviettes.jpeg"
-              alt="Table de massage préparée avec des serviettes chaudes, lumière tamisée"
+              src="/images/noel/salon-massage-toulouse-noel.jpg"
+              alt="Table de massage installée dans un salon toulousain à la lueur des bougies, vue sur le clocher de Saint-Sernin"
               fill
               priority
               sizes="100vw"
@@ -248,7 +248,7 @@ export default function CarteCadeauNoel() {
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "linear-gradient(100deg, rgba(20,15,9,.94) 0%, rgba(23,32,26,.82) 48%, rgba(20,15,9,.45) 100%)",
+                "linear-gradient(100deg, rgba(20,15,9,.92) 0%, rgba(23,32,26,.7) 42%, rgba(20,15,9,.08) 78%, rgba(20,15,9,0) 100%)",
             }}
           />
           <div
@@ -259,7 +259,6 @@ export default function CarteCadeauNoel() {
                 "radial-gradient(circle, rgba(192,135,60,.42) 0%, rgba(192,135,60,0) 62%)",
             }}
           />
-          <Sprig className="absolute right-[4%] top-[18%] w-[clamp(120px,16vw,220px)] text-[rgba(216,165,90,.55)] hidden sm:block" />
 
           <div className="relative w-full max-w-[1120px] mx-auto pt-[118px] pb-[64px] px-[clamp(20px,5vw,64px)]">
             <nav
@@ -350,7 +349,17 @@ export default function CarteCadeauNoel() {
                 Pourquoi un massage sous le sapin
               </h2>
             </div>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-[clamp(20px,3vw,40px)]">
+            <div className="grid lg:grid-cols-[5fr_7fr] gap-[clamp(32px,4vw,56px)] items-start">
+              <figure data-reveal className="m-0 relative aspect-[4/5] lg:aspect-[3/4] overflow-hidden rounded-[4px] shadow-[0_40px_70px_-40px_rgba(34,28,21,.6)]">
+                <Image
+                  src="/images/noel/carte-cadeau-enveloppe-doree.jpg"
+                  alt="Carte cadeau Alex Massage glissée dans une enveloppe kraft nouée d'un ruban doré, bougie et oranges séchées"
+                  fill
+                  sizes="(min-width: 1024px) 460px, 100vw"
+                  className="object-cover object-[62%_50%]"
+                />
+              </figure>
+            <div className="grid sm:grid-cols-2 gap-[clamp(20px,3vw,40px)]">
               {POURQUOI.map((p, i) => (
                 <div key={p.t} data-reveal={String(i * 100)} className="border-t border-[rgba(192,135,60,.55)] pt-6">
                   <h3 className="font-serif font-normal text-[22px] text-ink m-0 mb-3 leading-[1.25]">
@@ -359,6 +368,7 @@ export default function CarteCadeauNoel() {
                   <p className="m-0 text-taupe text-[15.5px] leading-[1.7]">{p.a}</p>
                 </div>
               ))}
+            </div>
             </div>
           </div>
         </section>
@@ -454,6 +464,18 @@ export default function CarteCadeauNoel() {
             <h2 id="h-noel-profils" data-reveal="80" className={`${h2Class} mb-10 max-w-[18ch]`}>
               Quel massage offrir, et à qui ?
             </h2>
+            <figure data-reveal="120" className="m-0 mb-10 relative aspect-[16/9] sm:aspect-[21/9] overflow-hidden rounded-[4px]">
+              <Image
+                src="/images/noel/massage-duo-coin-du-feu.jpg"
+                alt="Deux tables de massage préparées côte à côte près d'une cheminée, décor de Noël et bougies"
+                fill
+                sizes="(min-width: 1040px) 1000px, 100vw"
+                className="object-cover object-[50%_60%]"
+              />
+              <figcaption className="absolute inset-x-0 bottom-0 px-[clamp(18px,3vw,32px)] pt-16 pb-[clamp(16px,2.4vw,26px)] bg-[linear-gradient(0deg,rgba(20,15,9,.85),rgba(20,15,9,0))] font-serif italic text-linen text-[clamp(17px,2vw,22px)]">
+                Le duo : deux tables, deux praticiens, un même moment.
+              </figcaption>
+            </figure>
             <ul className="list-none p-0 m-0 border-t border-[rgba(34,28,21,.14)]">
               {PROFILS.map((p, i) => (
                 <li
@@ -622,14 +644,23 @@ export default function CarteCadeauNoel() {
 
         {/* Bandeau final */}
         <section className="relative overflow-hidden bg-night">
+          <div className="absolute inset-0">
+            <Image
+              src="/images/noel/huile-massage-bougies.jpg"
+              alt=""
+              fill
+              sizes="100vw"
+              className="object-cover object-right"
+            />
+          </div>
           <div
             aria-hidden="true"
-            className="absolute right-[7%] top-1/2 -translate-y-1/2 grid place-items-center pointer-events-none"
-          >
-            <div className="w-[230px] h-[230px] border border-[rgba(216,165,90,.3)] rounded-full animate-[breathe_11s_cubic-bezier(.37,0,.63,1)_infinite]" />
-            <div className="absolute w-[150px] h-[150px] border border-[rgba(216,165,90,.42)] rounded-full animate-[breathe_11s_cubic-bezier(.37,0,.63,1)_infinite] [animation-delay:-1.4s]" />
-            <div className="absolute w-2 h-2 bg-goldlight rounded-full animate-[breatheGlow_11s_ease-in-out_infinite]" />
-          </div>
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(10,8,5,.92) 0%, rgba(10,8,5,.78) 50%, rgba(10,8,5,.2) 100%)",
+            }}
+          />
           <div className="relative max-w-[1200px] mx-auto px-[clamp(20px,5vw,64px)] py-[clamp(66px,9vw,118px)] flex flex-col gap-[22px]">
             <span className="text-[13px] tracking-[.26em] uppercase font-semibold text-goldlight">
               Joyeux Noël

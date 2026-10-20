@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { sendBooking, type BookingState } from "@/app/actions/booking";
 
 type Variant = "massage" | "cadeau" | "entreprise" | "contact";
@@ -127,6 +127,7 @@ export default function BookingForm({
     sendBooking,
     { ok: false },
   );
+  const [envoi, setEnvoi] = useState("acheteur");
   const sent = state.ok;
   const c = COPY[variant];
 
@@ -221,6 +222,7 @@ export default function BookingForm({
                   <input
                     type="email"
                     name="email"
+                    required={isCadeau && envoi === "acheteur"}
                     className={inputClass}
                     placeholder="vous@exemple.fr"
                   />
@@ -364,6 +366,32 @@ export default function BookingForm({
                       placeholder="Le prénom de la personne à qui l'offrir"
                     />
                   </label>
+                  <label className="block">
+                    <span className={labelClass}>Envoyer la carte à</span>
+                    <select
+                      name="envoi"
+                      value={envoi}
+                      onChange={(e) => setEnvoi(e.target.value)}
+                      className={inputClass}
+                    >
+                      <option value="acheteur">Moi, pour l&apos;offrir moi-même</option>
+                      <option value="beneficiaire">
+                        Directement au bénéficiaire
+                      </option>
+                    </select>
+                  </label>
+                  {envoi === "beneficiaire" && (
+                    <label className="block">
+                      <span className={labelClass}>Email du bénéficiaire</span>
+                      <input
+                        type="email"
+                        name="emailBeneficiaire"
+                        required
+                        className={inputClass}
+                        placeholder="son.email@exemple.fr"
+                      />
+                    </label>
+                  )}
                 </div>
               )}
 
