@@ -105,7 +105,7 @@ export default function SiteFooter() {
 
       <div className="max-w-[1200px] mx-auto mt-[52px] border-t border-[rgba(34,28,21,.13)] pt-6 pb-8 flex flex-wrap gap-3 justify-between items-center">
         <span className="text-[12.5px] text-mute tracking-[.02em]">
-          © {new Date().getFullYear()} Alex Massage — Massage bien-être à domicile à Toulouse.
+          © {new Date().getFullYear()} Alex Massage — Massage bien-être à domicile à Toulouse. Fait avec ❤️ par <a href="https://www.weyow.fr" target="_blank" rel="noopener" className="hover:text-bronze">Weyow</a>
         </span>
         <span className="font-serif italic text-[14px] text-bronze">
           Le rituel qui vient à vous.
