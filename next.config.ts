@@ -15,6 +15,8 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Optimiseur d'images Vercel désactivé : quota Hobby dépassé (402). Images servies telles quelles.
+  images: { unoptimized: true },
   poweredByHeader: false,
   trailingSlash: false,
   async redirects() {
