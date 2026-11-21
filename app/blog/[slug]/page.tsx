@@ -7,16 +7,19 @@ import JsonLd from "@/components/JsonLd";
 import RdvBand from "@/components/RdvBand";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
-import { ARTICLES, getArticle, getCategory } from "@/lib/blog";
+import { getArticle, getCategory, publishedArticles } from "@/lib/blog";
 import { businessRef, SITE_URL } from "@/lib/structured-data";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return ARTICLES.map((a) => ({ slug: a.slug }));
+  return publishedArticles().map((a) => ({ slug: a.slug }));
 }
 
-export const dynamicParams = false;
+/* Les articles programmés sont générés à la demande une fois leur date
+   passée ; getArticle() renvoie undefined (404) avant. */
+export const dynamicParams = true;
+export const revalidate = 3600;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;

@@ -1,13 +1,15 @@
 import type { MetadataRoute } from "next";
-import { ARTICLES } from "@/lib/blog";
+import { publishedArticles } from "@/lib/blog";
 import { SITE_URL } from "@/lib/structured-data";
+
+export const revalidate = 3600;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
   const routes: { path: string; priority: number }[] = [
     { path: "/blog", priority: 0.8 },
-    ...ARTICLES.map((a) => ({ path: `/blog/${a.slug}`, priority: 0.6 })),
+    ...publishedArticles().map((a) => ({ path: `/blog/${a.slug}`, priority: 0.6 })),
     { path: "/", priority: 1 },
     { path: "/mes-massages-toulouse", priority: 0.9 },
     { path: "/massage-californien-toulouse", priority: 0.9 },

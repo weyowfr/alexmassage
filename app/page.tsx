@@ -7,8 +7,13 @@ import QuizMassage from "@/components/QuizMassage";
 import RdvBand from "@/components/RdvBand";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import SportifsToulouse from "@/components/SportifsToulouse";
 import MethodeSection from "@/components/massage/MethodeSection";
 import { businessLd } from "@/lib/structured-data";
+
+/* Régénérée toutes les heures : les liens « Sportifs toulousains » suivent
+   la publication programmée des articles du blog. */
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Massage du dos & des épaules à domicile à Toulouse — Alex Massage",
@@ -259,6 +264,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* ░░ SPORTIFS TOULOUSAINS ░░ */}
+        <SportifsToulouse />
 
         {/* ░░ ALEXANDRE ░░ */}
         <section

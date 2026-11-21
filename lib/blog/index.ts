@@ -59,6 +59,19 @@ import a48 from "./articles/massage-corps-entier-ou-zone-ciblee";
 import a49 from "./articles/lacher-prise-massage-besoins-reels";
 import a50 from "./articles/massage-routine-bien-etre-abonnement";
 
+/* Sports toulousains — publication programmée, un article par semaine */
+import a51 from "./articles/massage-sportif-basket-toulouse";
+import a52 from "./articles/massage-sportif-football-toulouse";
+import a53 from "./articles/massage-sportif-handball";
+import a54 from "./articles/massage-tennis-epaule-avant-bras";
+import a55 from "./articles/massage-padel-toulouse";
+import a56 from "./articles/massage-cyclisme-velo-toulouse";
+import a57 from "./articles/massage-natation-nageurs";
+import a58 from "./articles/massage-sportif-volley";
+import a59 from "./articles/massage-triathlon-recuperation";
+import a60 from "./articles/massage-crossfit-hiit";
+import a61 from "./articles/massage-escalade-grimpeurs";
+
 export const CATEGORIES: Category[] = [
   {
     id: "dos-tensions",
@@ -112,12 +125,36 @@ export const ARTICLES: Article[] = [
   a30, a31, a32, a33, a34, a35,
   a36, a37, a38, a39, a40,
   a41, a42, a43, a44, a45, a46, a47, a48, a49, a50,
+  a51, a52, a53, a54, a55, a56, a57, a58, a59, a60, a61,
 ];
 
 const BY_SLUG = new Map(ARTICLES.map((a) => [a.slug, a]));
 
+/* Publication programmée : un article dont la date est dans le futur reste
+   invisible (hub, sitemap, liens « à lire aussi », URL en 404) jusqu'à ce
+   jour-là, heure de Paris. Les pages du blog sont régénérées toutes les
+   heures (ISR), donc l'article apparaît sans nouveau déploiement. */
+function todayInParis(): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/Paris",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
+}
+
+export function isPublished(a: Article): boolean {
+  return a.date <= todayInParis();
+}
+
+export function publishedArticles(): Article[] {
+  return ARTICLES.filter(isPublished);
+}
+
+/* Renvoie uniquement un article déjà publié. */
 export function getArticle(slug: string): Article | undefined {
-  return BY_SLUG.get(slug);
+  const a = BY_SLUG.get(slug);
+  return a && isPublished(a) ? a : undefined;
 }
 
 export function getCategory(id: CategoryId): Category {
@@ -125,5 +162,5 @@ export function getCategory(id: CategoryId): Category {
 }
 
 export function articlesByCategory(id: CategoryId): Article[] {
-  return ARTICLES.filter((a) => a.category === id);
+  return publishedArticles().filter((a) => a.category === id);
 }
